@@ -279,6 +279,262 @@
     line-height: 1.6;
 }
 
+/* ── SLIDE LOGOS ────────────────────────────────────────────── */
+.slide-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.slide-logo {
+    height: 36px;
+    width: auto;
+    opacity: .8;
+}
+
+.slide-logo-invert {
+    filter: brightness(0) invert(1);
+}
+
+/* ── STAT CARDS ─────────────────────────────────────────────── */
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin: var(--space-md) 0;
+}
+
+.stat-card {
+    padding: var(--space-md);
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius);
+    text-align: center;
+    transition: all var(--speed) var(--ease);
+}
+
+.stat-card:hover {
+    border-color: rgba(201, 168, 76, .3);
+    transform: translateY(-3px);
+}
+
+.stat-number {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    margin-bottom: var(--space-xs);
+}
+
+.stat-card p {
+    font-size: .85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ── GAP GRID ──────────────────────────────────────────────── */
+.gap-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+    margin: var(--space-md) auto;
+    max-width: 900px;
+}
+
+.gap-card {
+    padding: var(--space-sm) var(--space-sm);
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    transition: all var(--speed) var(--ease);
+}
+
+.gap-card:hover {
+    border-color: rgba(201, 168, 76, .25);
+    transform: translateY(-2px);
+}
+
+.gap-icon {
+    font-size: 1.8rem;
+    margin-bottom: var(--space-xs);
+}
+
+.gap-card h4 {
+    font-size: .85rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--gold-light);
+}
+
+.gap-card p {
+    font-size: .78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ── TERRA FLOW DIAGRAM ────────────────────────────────────── */
+.terra-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: var(--space-sm);
+}
+
+.flow-step {
+    width: 100%;
+    max-width: 280px;
+    padding: var(--space-sm) var(--space-sm);
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius-sm);
+    text-align: center;
+}
+
+.flow-highlight {
+    border-color: var(--gold);
+    background: rgba(201, 168, 76, .06);
+    box-shadow: 0 0 30px rgba(201, 168, 76, .08);
+}
+
+.flow-label {
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.flow-highlight .flow-label {
+    color: var(--gold-light);
+}
+
+.flow-sub {
+    font-size: .75rem;
+    color: var(--text-dim);
+}
+
+.flow-arrow {
+    font-size: 1.4rem;
+    color: var(--gold);
+    padding: .3rem 0;
+    line-height: 1;
+}
+
+/* ── SENTINEL ICON ─────────────────────────────────────────── */
+.sentinel-icon {
+    font-size: 1.2rem !important;
+    font-weight: 800;
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    display: inline-block;
+    text-align: center;
+    margin-bottom: var(--space-xs);
+}
+
+/* ── DETAILED PILOT CARDS ──────────────────────────────────── */
+.pilot-detailed {
+    text-align: left;
+}
+
+.pilot-flag {
+    font-size: 2rem;
+    margin-bottom: var(--space-xs);
+}
+
+.pilot-location {
+    font-size: .75rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: var(--space-xs);
+}
+
+.pilot-tech {
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .08em;
+    color: var(--gold);
+    margin-top: var(--space-sm);
+    padding-top: var(--space-xs);
+    border-top: 1px solid var(--dark-border);
+}
+
+/* ── EO VISUAL DIAGRAM ─────────────────────────────────────── */
+.eo-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: var(--space-md);
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius);
+}
+
+.eo-layer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: .6rem var(--space-sm);
+}
+
+.eo-icon {
+    font-size: 1.6rem;
+}
+
+.eo-layer span {
+    font-size: .85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.eo-beam {
+    width: 2px;
+    height: 28px;
+    background: linear-gradient(to bottom, var(--gold), rgba(201, 168, 76, .2));
+}
+
+/* ── CLOSING LINKS ─────────────────────────────────────────── */
+.closing-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.closing-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .6rem 1.2rem;
+    border: 1px solid var(--dark-border);
+    border-radius: 50px;
+    font-size: .82rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all var(--speed) var(--ease);
+}
+
+.closing-link:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    background: rgba(201, 168, 76, .06);
+}
+
+.closing-icon {
+    font-size: 1rem;
+}
+
 /* ── SLIDE CONTROLS ─────────────────────────────────────────── */
 .slide-controls {
     position: fixed;
@@ -339,11 +595,22 @@
 
     .slide-grid-2,
     .slide-grid-3,
-    .station-grid {
+    .station-grid,
+    .stat-grid {
         grid-template-columns: 1fr;
+    }
+
+    .gap-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .criteria-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .closing-links {
+        flex-direction: column;
+        align-items: center;
+    }
 }
+

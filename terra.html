@@ -15,6 +15,7 @@
 
     <nav class="top-nav">
         <a href="index.html" class="nav-brand">
+            <img src="images/isu-logo.png" alt="ISU" class="nav-logo">
             <span class="brand-hash">#</span>FACTORY<span class="brand-year">2026</span>
         </a>
         <ul class="nav-links">
@@ -23,145 +24,327 @@
         </ul>
     </nav>
 
-    <!-- ═══════════════════════════════════════════ -->
-    <!-- PRESENTATION SLIDES                        -->
-    <!-- ═══════════════════════════════════════════ -->
     <main class="presentation" id="terra">
         <div class="slide-container">
 
-            <!-- SLIDE 1: Title -->
+            <!-- ══════════════════════════════════════════ -->
+            <!-- SLIDE 1: TITLE                            -->
+            <!-- ══════════════════════════════════════════ -->
             <section class="slide active" data-slide="0">
                 <div class="slide-inner slide-center">
-                    <p class="slide-tag">Session 1 &middot; Salle 1401 &middot; 15:15 &ndash; 16:15</p>
+                    <div class="slide-logos">
+                        <img src="images/terra-logo.png" alt="TERRA" class="slide-logo">
+                        <img src="images/eu-funded.png" alt="EU Funded" class="slide-logo">
+                    </div>
+                    <p class="slide-tag">Atelier D&#233;couverte &middot; Salle 1401 &middot; 15:15 &ndash; 16:15</p>
                     <h1 class="slide-hero-title">
-                        TERRA: Earth Observation<br>for Climate Action
+                        TERRA Live:<br>Intelligent Climate Services<br>from Space
                     </h1>
                     <p class="slide-subtitle">
-                        Applications terrestres: donnees spatiales et nouveaux services industriels.
+                        How satellites watch over our water, coasts, and ports &mdash; and why it matters for your business.
                     </p>
                     <div class="slide-meta">
                         <span>Horizon Europe</span>
                         <span class="meta-sep">&bull;</span>
-                        <span>Copernicus Sentinel Data</span>
+                        <span>Dr. Anwar Sounny-Slitine</span>
                         <span class="meta-sep">&bull;</span>
-                        <span>3 Pilot Regions</span>
+                        <span>International Space University</span>
                     </div>
                 </div>
             </section>
 
-            <!-- SLIDE 2: What is TERRA? -->
+            <!-- ══════════════════════════════════════════ -->
+            <!-- SLIDE 2: WHY WATER MATTERS                -->
+            <!-- ══════════════════════════════════════════ -->
             <section class="slide" data-slide="1">
-                <div class="slide-inner">
-                    <p class="slide-tag">Context</p>
-                    <h2>What is TERRA?</h2>
-                    <div class="slide-grid-2">
-                        <div>
-                            <p class="slide-body">
-                                TERRA is a Horizon Europe project developing operational climate services from Copernicus Sentinel satellite data. We translate raw Earth Observation into actionable intelligence for policymakers, farmers, and urban planners.
-                            </p>
-                            <ul class="slide-list">
-                                <li>Water Stress Monitoring</li>
-                                <li>Forest Health Assessment</li>
-                                <li>Coastal Erosion Mapping</li>
-                                <li>Agricultural Yield Forecasting</li>
-                            </ul>
+                <div class="slide-inner slide-center">
+                    <p class="slide-tag">The Challenge</p>
+                    <h2>Why This Matters</h2>
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">90%</div>
+                            <p>of global economic activities depend on water</p>
                         </div>
-                        <div class="slide-visual-placeholder">
-                            <div class="visual-label">[ Live Demo: Copernicus Browser ]</div>
+                        <div class="stat-card">
+                            <div class="stat-number">75%</div>
+                            <p>of jobs worldwide rely on water resources</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">Top 5</div>
+                            <p>Water-related risks rank among the top five global risks</p>
                         </div>
                     </div>
+                    <p class="slide-body" style="max-width: 600px; margin: var(--space-md) auto 0;">
+                        Pollution, flooding, coastal erosion, and sea-level rise threaten communities and economies across Europe. But what if we could see these threats from space?
+                    </p>
                 </div>
             </section>
 
-            <!-- SLIDE 3: Pilot Regions -->
+            <!-- ══════════════════════════════════════════ -->
+            <!-- SLIDE 3: WHAT IS EARTH OBSERVATION?       -->
+            <!-- ══════════════════════════════════════════ -->
             <section class="slide" data-slide="2">
                 <div class="slide-inner">
-                    <p class="slide-tag">Pilots</p>
-                    <h2>Three Pilot Regions</h2>
-                    <div class="slide-grid-3">
-                        <div class="pilot-card">
-                            <div class="pilot-icon">🇬🇷</div>
-                            <h3>Crete, Greece</h3>
-                            <p>Water stress monitoring for olive groves and vineyards using NDWI indices from Sentinel-2.</p>
-                        </div>
-                        <div class="pilot-card">
-                            <div class="pilot-icon">🇫🇮</div>
-                            <h3>Finland</h3>
-                            <p>Boreal forest health tracking with SAR-based biomass estimation from Sentinel-1.</p>
-                        </div>
-                        <div class="pilot-card">
-                            <div class="pilot-icon">🇮🇪</div>
-                            <h3>Ireland</h3>
-                            <p>Coastal erosion and flood risk mapping with multi-temporal change detection.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SLIDE 4: Policy Impact -->
-            <section class="slide" data-slide="3">
-                <div class="slide-inner">
-                    <p class="slide-tag">Impact</p>
-                    <h2>From Data to Policy</h2>
+                    <p class="slide-tag">The Basics</p>
+                    <h2>What is Earth Observation?</h2>
                     <div class="slide-grid-2">
                         <div>
                             <p class="slide-body">
-                                Work Package 6 translates pilot results into actionable policy recommendations for European and national decision-makers.
+                                Earth Observation (EO) is the practice of using satellites to collect information about our planet's physical, chemical, and biological systems. Think of it as a <strong>medical check-up for the Earth</strong>, repeated every few days, from 700 km above.
                             </p>
                             <ul class="slide-list">
-                                <li>Stakeholder interviews with 4&ndash;6 policymakers</li>
-                                <li>Exploitation pathways for commercial spin-off</li>
-                                <li>Alignment with EU Green Deal and CAP</li>
-                                <li>Open-data principles for reproducibility</li>
+                                <li><strong>Optical sensors</strong> take photographs in visible and infrared light (like a camera, but much more powerful)</li>
+                                <li><strong>Radar (SAR)</strong> bounces microwaves off the surface, seeing through clouds, day and night</li>
+                                <li><strong>The data is free</strong> and openly available to anyone, anywhere in the world</li>
                             </ul>
                         </div>
-                        <div class="slide-visual-placeholder">
-                            <div class="visual-label">[ Policy Brief Framework ]</div>
+                        <div class="eo-visual">
+                            <div class="eo-layer">
+                                <div class="eo-icon">&#128752;</div>
+                                <span>Satellite (700 km)</span>
+                            </div>
+                            <div class="eo-beam"></div>
+                            <div class="eo-layer">
+                                <div class="eo-icon">&#9729;&#65039;</div>
+                                <span>Atmosphere</span>
+                            </div>
+                            <div class="eo-beam"></div>
+                            <div class="eo-layer">
+                                <div class="eo-icon">&#127758;</div>
+                                <span>Earth Surface</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- SLIDE 5: Interactive Demo -->
+            <!-- ══════════════════════════════════════════ -->
+            <!-- SLIDE 4: COPERNICUS & SENTINEL            -->
+            <!-- ══════════════════════════════════════════ -->
+            <section class="slide" data-slide="3">
+                <div class="slide-inner">
+                    <p class="slide-tag">Europe's Eyes in the Sky</p>
+                    <h2>Copernicus &amp; the Sentinels</h2>
+                    <p class="slide-body" style="margin-bottom: var(--space-md);">
+                        <strong>Copernicus</strong> is the European Union's Earth Observation programme, the largest in the world. It operates a fleet of <strong>Sentinel satellites</strong>, each designed for a different mission:
+                    </p>
+                    <div class="slide-grid-3">
+                        <div class="pilot-card">
+                            <div class="pilot-icon sentinel-icon">S-1</div>
+                            <h3>Sentinel-1</h3>
+                            <p><strong>Radar (SAR)</strong><br>Sees through clouds, day and night. Used for ship detection, oil spills, and coastline mapping.</p>
+                        </div>
+                        <div class="pilot-card">
+                            <div class="pilot-icon sentinel-icon">S-2</div>
+                            <h3>Sentinel-2</h3>
+                            <p><strong>Optical Multispectral</strong><br>High-resolution color imagery. Used for land classification, water quality, and vegetation health.</p>
+                        </div>
+                        <div class="pilot-card">
+                            <div class="pilot-icon sentinel-icon">S-3</div>
+                            <h3>Sentinel-3</h3>
+                            <p><strong>Ocean &amp; Land Color</strong><br>Wide-area coverage. Measures sea surface temperature, algal blooms, and coastal water quality.</p>
+                        </div>
+                    </div>
+                    <p class="slide-note">All Copernicus data is free, open, and publicly accessible. Petabytes of imagery are generated every day.</p>
+                </div>
+            </section>
+
+            <!-- ══════════════════════════════════════════ -->
+            <!-- SLIDE 5: THE GAP                          -->
+            <!-- ══════════════════════════════════════════ -->
             <section class="slide" data-slide="4">
                 <div class="slide-inner slide-center">
-                    <p class="slide-tag">Live Demo</p>
-                    <h2>Interactive Stations</h2>
-                    <p class="slide-body" style="max-width: 600px; margin: 0 auto var(--space-md);">
-                        Visit our three interactive stations to explore real satellite imagery, compute vegetation indices, and visualize climate trends in your browser.
+                    <p class="slide-tag">The Problem</p>
+                    <h2>Amazing Data. Nobody Can Use It.</h2>
+                    <p class="slide-body" style="max-width: 640px; margin: 0 auto var(--space-md);">
+                        The EU has invested billions in Copernicus. But translating raw satellite data into actionable intelligence for cities, ports, and businesses remains a massive challenge:
+                    </p>
+                    <div class="gap-grid">
+                        <div class="gap-card">
+                            <div class="gap-icon">&#128736;&#65039;</div>
+                            <h4>Too Technical</h4>
+                            <p>Raw data requires specialized processing that most agencies lack.</p>
+                        </div>
+                        <div class="gap-card">
+                            <div class="gap-icon">&#128196;</div>
+                            <h4>Incompatible Formats</h4>
+                            <p>Different satellites produce data in different formats and projections.</p>
+                        </div>
+                        <div class="gap-card">
+                            <div class="gap-icon">&#9201;&#65039;</div>
+                            <h4>Timing Mismatch</h4>
+                            <p>Policy decisions operate on different timescales than satellite passes.</p>
+                        </div>
+                        <div class="gap-card">
+                            <div class="gap-icon">&#127979;</div>
+                            <h4>No Training</h4>
+                            <p>Limited capacity for EO integration in regional administrations.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ══════════════════════════════════════════ -->
+            <!-- SLIDE 6: ENTER TERRA                      -->
+            <!-- ══════════════════════════════════════════ -->
+            <section class="slide" data-slide="5">
+                <div class="slide-inner">
+                    <p class="slide-tag">The Solution</p>
+                    <h2>Enter TERRA</h2>
+                    <div class="slide-grid-2">
+                        <div>
+                            <p class="slide-body">
+                                <strong>TERRA</strong> (InTelligEnt platfoRm for IntegRating climAte services) is the <em>intelligent last-mile service layer</em> that transforms raw satellite data into tools that any decision-maker can use.
+                            </p>
+                            <p class="slide-body">
+                                Instead of asking a municipality to download terabytes of radar imagery and write code, TERRA delivers:
+                            </p>
+                            <ul class="slide-list">
+                                <li><strong>Ready-to-use dashboards</strong> with maps, alerts, and trends</li>
+                                <li><strong>AI-powered analysis</strong> that finds patterns humans would miss</li>
+                                <li><strong>"What-if" Digital Twins</strong> to simulate future scenarios</li>
+                                <li><strong>Policy briefs</strong> that translate findings into recommendations</li>
+                            </ul>
+                        </div>
+                        <div class="terra-flow">
+                            <div class="flow-step">
+                                <div class="flow-label">Raw Satellite Data</div>
+                                <div class="flow-sub">Sentinel-1, 2, 3 + in-situ sensors</div>
+                            </div>
+                            <div class="flow-arrow">&#8595;</div>
+                            <div class="flow-step flow-highlight">
+                                <div class="flow-label">TERRA Platform</div>
+                                <div class="flow-sub">AI, Data Fusion, Digital Twins</div>
+                            </div>
+                            <div class="flow-arrow">&#8595;</div>
+                            <div class="flow-step">
+                                <div class="flow-label">Actionable Intelligence</div>
+                                <div class="flow-sub">Dashboards, Alerts, Policy Briefs</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ══════════════════════════════════════════ -->
+            <!-- SLIDE 7: THREE PILOTS                     -->
+            <!-- ══════════════════════════════════════════ -->
+            <section class="slide" data-slide="6">
+                <div class="slide-inner">
+                    <p class="slide-tag">Real Stories</p>
+                    <h2>Three Pilots Across Europe</h2>
+                    <div class="slide-grid-3">
+                        <div class="pilot-card pilot-detailed">
+                            <div class="pilot-flag">&#127468;&#127479;</div>
+                            <h3>Greece: Water Pollution</h3>
+                            <p class="pilot-location">Sperchios River &amp; Maliakos Gulf, Fthiotida</p>
+                            <p>Agricultural runoff and industrial discharge contaminate coastal waters. TERRA detects pollution events <strong>up to 48 hours faster</strong> than ground sensors.</p>
+                            <div class="pilot-tech">Sentinel-2 + Sentinel-3 &middot; LSTM AI Models</div>
+                        </div>
+                        <div class="pilot-card pilot-detailed">
+                            <div class="pilot-flag">&#127477;&#127473;</div>
+                            <h3>Poland: Maritime Security</h3>
+                            <p class="pilot-location">Port of Gdansk, Baltic Sea</p>
+                            <p>15% of global shipping crosses the Baltic. TERRA detects <strong>"dark vessels"</strong> that turn off their tracking to dump waste or smuggle goods.</p>
+                            <div class="pilot-tech">Sentinel-1 SAR &middot; SAR-AIS Fusion AI</div>
+                        </div>
+                        <div class="pilot-card pilot-detailed">
+                            <div class="pilot-flag">&#127468;&#127463;</div>
+                            <h3>Scotland: Coastal Erosion</h3>
+                            <p class="pilot-location">Scottish Coastline, UK</p>
+                            <p>20% of Europe's coastline is eroding. TERRA's Digital Twin achieves <strong>98% accuracy</strong> in automated coastline classification.</p>
+                            <div class="pilot-tech">Sentinel-1 + 2 &middot; U-Net + Mamba-LSTM</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ══════════════════════════════════════════ -->
+            <!-- SLIDE 8: KEY RESULTS                      -->
+            <!-- ══════════════════════════════════════════ -->
+            <section class="slide" data-slide="7">
+                <div class="slide-inner slide-center">
+                    <p class="slide-tag">Impact</p>
+                    <h2>What We've Proven</h2>
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">48h</div>
+                            <p>Earlier detection of water contamination events compared to ground sensors</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">98%</div>
+                            <p>Accuracy in automated coastline classification using AI + Sentinel imagery</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">&euro;0</div>
+                            <p>Marginal data cost: Copernicus provides pan-European coverage for free</p>
+                        </div>
+                    </div>
+                    <p class="slide-body" style="max-width: 600px; margin: var(--space-md) auto 0;">
+                        Traditional coastal surveys cost hundreds of thousands of euros per campaign. Satellite monitoring replaces periodic, expensive fieldwork with <strong>continuous, automated observation</strong>.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ══════════════════════════════════════════ -->
+            <!-- SLIDE 9: YOUR TURN - INTERACTIVE STATIONS -->
+            <!-- ══════════════════════════════════════════ -->
+            <section class="slide" data-slide="8">
+                <div class="slide-inner slide-center">
+                    <p class="slide-tag">Hands-On</p>
+                    <h2>Your Turn: Interactive Stations</h2>
+                    <p class="slide-body" style="max-width: 620px; margin: 0 auto var(--space-md);">
+                        Split into three groups. Every 12 minutes, rotate to the next station. At each one, you will interact with real satellite data in your browser.
                     </p>
                     <div class="station-grid">
                         <div class="station">
-                            <div class="station-num">A</div>
-                            <h4>Copernicus Browser</h4>
-                            <p>Navigate Sentinel-2 imagery and custom band composites.</p>
+                            <div class="station-num">1</div>
+                            <h4>Station Greece</h4>
+                            <p>Explore coastal water quality using Copernicus Browser. Can you spot the pollution plume?</p>
                         </div>
                         <div class="station">
-                            <div class="station-num">B</div>
-                            <h4>Google Earth Engine</h4>
-                            <p>Time-series NDVI/NDWI analysis with cloud computing.</p>
+                            <div class="station-num">2</div>
+                            <h4>Station Poland</h4>
+                            <p>Examine SAR radar imagery of the Baltic. Can you find the "dark vessel" hiding from tracking?</p>
                         </div>
                         <div class="station">
-                            <div class="station-num">C</div>
-                            <h4>TERRA Dashboard</h4>
-                            <p>Project dashboards showing real-time pilot data feeds.</p>
+                            <div class="station-num">3</div>
+                            <h4>Station Scotland</h4>
+                            <p>Compare coastline images over time. Where is the erosion happening and how fast?</p>
                         </div>
                     </div>
+                    <p class="slide-note">Each station has a printed Policy Brief with background and guided questions.</p>
                 </div>
             </section>
 
-            <!-- SLIDE 6: Closing -->
-            <section class="slide" data-slide="5">
+            <!-- ══════════════════════════════════════════ -->
+            <!-- SLIDE 10: CLOSING                         -->
+            <!-- ══════════════════════════════════════════ -->
+            <section class="slide" data-slide="9">
                 <div class="slide-inner slide-center">
-                    <p class="slide-tag">Connect</p>
-                    <h2>Thank You</h2>
-                    <p class="slide-body" style="max-width: 500px; margin: 0 auto;">
-                        TERRA is funded by the European Union's Horizon Europe programme. Contact us for collaboration opportunities.
+                    <div class="slide-logos">
+                        <img src="images/terra-logo.png" alt="TERRA" class="slide-logo">
+                        <img src="images/isu-logo.png" alt="ISU" class="slide-logo slide-logo-invert">
+                        <img src="images/eu-funded.png" alt="EU Funded" class="slide-logo">
+                    </div>
+                    <p class="slide-tag">Thank You</p>
+                    <h2>From Orbit to Enterprise</h2>
+                    <p class="slide-body" style="max-width: 540px; margin: 0 auto;">
+                        TERRA is funded by the European Union's Horizon Europe programme (Grant No. 101189962). 14 partners across 7 countries, working to make space data useful for everyone.
                     </p>
-                    <div class="slide-meta" style="margin-top: var(--space-md);">
-                        <span>anwar.sounny@isunet.edu</span>
-                        <span class="meta-sep">&bull;</span>
-                        <span>isunet.edu</span>
+                    <div class="closing-links">
+                        <a href="https://terra-horizon.eu" target="_blank" class="closing-link">
+                            <span class="closing-icon">&#127760;</span>
+                            terra-horizon.eu
+                        </a>
+                        <a href="https://x.com/horizon_terra" target="_blank" class="closing-link">
+                            <span class="closing-icon">&#128172;</span>
+                            @horizon_terra
+                        </a>
+                        <a href="mailto:anwar.sounny@isunet.edu" class="closing-link">
+                            <span class="closing-icon">&#9993;&#65039;</span>
+                            anwar.sounny@isunet.edu
+                        </a>
                     </div>
                 </div>
             </section>
@@ -174,7 +357,7 @@
             <div class="slide-progress">
                 <span class="slide-current">1</span>
                 <span class="slide-sep">/</span>
-                <span class="slide-total">6</span>
+                <span class="slide-total">10</span>
             </div>
             <button class="slide-btn" id="next-btn" aria-label="Next slide">&rarr;</button>
         </div>
