@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TERRA Workshop: Interactive Copernicus Earth Observation Demos for Climate Action at Factory 2026">
+    <title>TERRA Workshop | Factory 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="presentation.css">
+</head>
+<body>
+
+    <nav class="top-nav">
+        <a href="index.html" class="nav-brand">
+            <span class="brand-hash">#</span>FACTORY<span class="brand-year">2026</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pitches.html">Student Pitches</a></li>
+        </ul>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PRESENTATION SLIDES                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <main class="presentation" id="terra">
+        <div class="slide-container">
+
+            <!-- SLIDE 1: Title -->
+            <section class="slide active" data-slide="0">
+                <div class="slide-inner slide-center">
+                    <p class="slide-tag">Session 1 &middot; Salle 1401 &middot; 15:15 &ndash; 16:15</p>
+                    <h1 class="slide-hero-title">
+                        TERRA: Earth Observation<br>for Climate Action
+                    </h1>
+                    <p class="slide-subtitle">
+                        Applications terrestres: donnees spatiales et nouveaux services industriels.
+                    </p>
+                    <div class="slide-meta">
+                        <span>Horizon Europe</span>
+                        <span class="meta-sep">&bull;</span>
+                        <span>Copernicus Sentinel Data</span>
+                        <span class="meta-sep">&bull;</span>
+                        <span>3 Pilot Regions</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 2: What is TERRA? -->
+            <section class="slide" data-slide="1">
+                <div class="slide-inner">
+                    <p class="slide-tag">Context</p>
+                    <h2>What is TERRA?</h2>
+                    <div class="slide-grid-2">
+                        <div>
+                            <p class="slide-body">
+                                TERRA is a Horizon Europe project developing operational climate services from Copernicus Sentinel satellite data. We translate raw Earth Observation into actionable intelligence for policymakers, farmers, and urban planners.
+                            </p>
+                            <ul class="slide-list">
+                                <li>Water Stress Monitoring</li>
+                                <li>Forest Health Assessment</li>
+                                <li>Coastal Erosion Mapping</li>
+                                <li>Agricultural Yield Forecasting</li>
+                            </ul>
+                        </div>
+                        <div class="slide-visual-placeholder">
+                            <div class="visual-label">[ Live Demo: Copernicus Browser ]</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 3: Pilot Regions -->
+            <section class="slide" data-slide="2">
+                <div class="slide-inner">
+                    <p class="slide-tag">Pilots</p>
+                    <h2>Three Pilot Regions</h2>
+                    <div class="slide-grid-3">
+                        <div class="pilot-card">
+                            <div class="pilot-icon">🇬🇷</div>
+                            <h3>Crete, Greece</h3>
+                            <p>Water stress monitoring for olive groves and vineyards using NDWI indices from Sentinel-2.</p>
+                        </div>
+                        <div class="pilot-card">
+                            <div class="pilot-icon">🇫🇮</div>
+                            <h3>Finland</h3>
+                            <p>Boreal forest health tracking with SAR-based biomass estimation from Sentinel-1.</p>
+                        </div>
+                        <div class="pilot-card">
+                            <div class="pilot-icon">🇮🇪</div>
+                            <h3>Ireland</h3>
+                            <p>Coastal erosion and flood risk mapping with multi-temporal change detection.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 4: Policy Impact -->
+            <section class="slide" data-slide="3">
+                <div class="slide-inner">
+                    <p class="slide-tag">Impact</p>
+                    <h2>From Data to Policy</h2>
+                    <div class="slide-grid-2">
+                        <div>
+                            <p class="slide-body">
+                                Work Package 6 translates pilot results into actionable policy recommendations for European and national decision-makers.
+                            </p>
+                            <ul class="slide-list">
+                                <li>Stakeholder interviews with 4&ndash;6 policymakers</li>
+                                <li>Exploitation pathways for commercial spin-off</li>
+                                <li>Alignment with EU Green Deal and CAP</li>
+                                <li>Open-data principles for reproducibility</li>
+                            </ul>
+                        </div>
+                        <div class="slide-visual-placeholder">
+                            <div class="visual-label">[ Policy Brief Framework ]</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 5: Interactive Demo -->
+            <section class="slide" data-slide="4">
+                <div class="slide-inner slide-center">
+                    <p class="slide-tag">Live Demo</p>
+                    <h2>Interactive Stations</h2>
+                    <p class="slide-body" style="max-width: 600px; margin: 0 auto var(--space-md);">
+                        Visit our three interactive stations to explore real satellite imagery, compute vegetation indices, and visualize climate trends in your browser.
+                    </p>
+                    <div class="station-grid">
+                        <div class="station">
+                            <div class="station-num">A</div>
+                            <h4>Copernicus Browser</h4>
+                            <p>Navigate Sentinel-2 imagery and custom band composites.</p>
+                        </div>
+                        <div class="station">
+                            <div class="station-num">B</div>
+                            <h4>Google Earth Engine</h4>
+                            <p>Time-series NDVI/NDWI analysis with cloud computing.</p>
+                        </div>
+                        <div class="station">
+                            <div class="station-num">C</div>
+                            <h4>TERRA Dashboard</h4>
+                            <p>Project dashboards showing real-time pilot data feeds.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 6: Closing -->
+            <section class="slide" data-slide="5">
+                <div class="slide-inner slide-center">
+                    <p class="slide-tag">Connect</p>
+                    <h2>Thank You</h2>
+                    <p class="slide-body" style="max-width: 500px; margin: 0 auto;">
+                        TERRA is funded by the European Union's Horizon Europe programme. Contact us for collaboration opportunities.
+                    </p>
+                    <div class="slide-meta" style="margin-top: var(--space-md);">
+                        <span>anwar.sounny@isunet.edu</span>
+                        <span class="meta-sep">&bull;</span>
+                        <span>isunet.edu</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Slide Controls -->
+        <div class="slide-controls">
+            <button class="slide-btn" id="prev-btn" aria-label="Previous slide">&larr;</button>
+            <div class="slide-progress">
+                <span class="slide-current">1</span>
+                <span class="slide-sep">/</span>
+                <span class="slide-total">6</span>
+            </div>
+            <button class="slide-btn" id="next-btn" aria-label="Next slide">&rarr;</button>
+        </div>
+    </main>
+
+    <script src="slides.js"></script>
+</body>
+</html>

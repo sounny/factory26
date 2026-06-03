@@ -1,0 +1,349 @@
+/* ══════════════════════════════════════════════════════════════
+   Factory 2026 – Presentation / Slide Styles
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── PRESENTATION LAYOUT ────────────────────────────────────── */
+.presentation {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.slide-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── INDIVIDUAL SLIDE ───────────────────────────────────────── */
+.slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem var(--space-md) var(--space-lg);
+    opacity: 0;
+    transform: translateX(60px);
+    pointer-events: none;
+    transition: opacity .5s var(--ease), transform .5s var(--ease);
+}
+
+.slide.active {
+    position: relative;
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+.slide.exit-left {
+    transform: translateX(-60px);
+}
+
+.slide-inner {
+    max-width: 1000px;
+    width: 100%;
+}
+
+.slide-center {
+    text-align: center;
+}
+
+/* ── SLIDE TYPOGRAPHY ───────────────────────────────────────── */
+.slide-tag {
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: var(--space-sm);
+}
+
+.slide-hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: var(--space-sm);
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.slide h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+}
+
+.slide-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin: 0 auto var(--space-md);
+    line-height: 1.7;
+}
+
+.slide-body {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: var(--space-sm);
+}
+
+.slide-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    justify-content: center;
+    font-size: .8rem;
+    color: var(--text-dim);
+}
+
+.meta-sep { color: var(--gold); }
+
+.slide-note {
+    font-size: .8rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-top: var(--space-md);
+    text-align: center;
+}
+
+/* ── SLIDE LISTS ────────────────────────────────────────────── */
+.slide-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-sm) 0;
+}
+
+.slide-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: .6rem;
+    font-size: .95rem;
+    color: var(--text-primary);
+}
+
+.slide-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: .55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+}
+
+/* ── SLIDE GRIDS ────────────────────────────────────────────── */
+.slide-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    align-items: start;
+}
+
+.slide-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+}
+
+/* ── VISUAL PLACEHOLDER ────────────────────────────────────── */
+.slide-visual-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    border: 1px dashed var(--dark-border);
+    border-radius: var(--radius);
+    background: var(--dark-card);
+}
+
+.visual-label {
+    font-size: .85rem;
+    color: var(--text-dim);
+    letter-spacing: .05em;
+}
+
+/* ── PILOT / PROJECT CARDS ──────────────────────────────────── */
+.pilot-card {
+    padding: var(--space-md);
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius);
+    text-align: center;
+    transition: all var(--speed) var(--ease);
+}
+
+.pilot-card:hover {
+    border-color: rgba(201, 168, 76, .3);
+    transform: translateY(-4px);
+}
+
+.pilot-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-xs);
+}
+
+.pilot-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+}
+
+.pilot-card p {
+    font-size: .85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* ── CRITERIA GRID ──────────────────────────────────────────── */
+.criteria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+}
+
+.criteria-item {
+    padding: var(--space-md);
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius);
+    text-align: center;
+}
+
+.criteria-score {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--gold);
+    margin-bottom: var(--space-xs);
+}
+
+.criteria-item h4 {
+    font-size: .95rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+}
+
+.criteria-item p {
+    font-size: .8rem;
+    color: var(--text-muted);
+}
+
+/* ── STATION GRID ───────────────────────────────────────────── */
+.station-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.station {
+    padding: var(--space-md);
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius);
+    text-align: center;
+    transition: all var(--speed) var(--ease);
+}
+
+.station:hover {
+    border-color: rgba(201, 168, 76, .3);
+}
+
+.station-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: var(--space-sm);
+}
+
+.station h4 {
+    font-size: .95rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+}
+
+.station p {
+    font-size: .8rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* ── SLIDE CONTROLS ─────────────────────────────────────────── */
+.slide-controls {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: 1rem;
+    background: rgba(12, 12, 14, .85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--dark-border);
+    z-index: 50;
+}
+
+.slide-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--dark-border);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--speed) var(--ease);
+}
+
+.slide-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201, 168, 76, .08);
+}
+
+.slide-btn:disabled {
+    opacity: .3;
+    cursor: not-allowed;
+}
+
+.slide-progress {
+    font-size: .9rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    color: var(--text-muted);
+}
+
+.slide-current { color: var(--gold); }
+.slide-sep { color: var(--dark-border); margin: 0 2px; }
+
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .slide { padding: 5rem var(--space-sm) var(--space-md); }
+
+    .slide-grid-2,
+    .slide-grid-3,
+    .station-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .criteria-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
