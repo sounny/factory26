@@ -535,6 +535,36 @@
     font-size: 1rem;
 }
 
+/* ── SLIDE VIDEO EMBED ─────────────────────────────────────── */
+.slide-video {
+    margin-top: var(--space-md);
+    text-align: center;
+}
+
+.slide-video iframe {
+    max-width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--dark-border);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .4);
+}
+
+/* ── STATION VIDEO LINKS ───────────────────────────────────── */
+.station-video-link {
+    display: inline-block;
+    margin-top: var(--space-xs);
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: .04em;
+    text-decoration: none;
+    transition: all var(--speed) var(--ease);
+}
+
+.station-video-link:hover {
+    color: var(--gold-light);
+    text-decoration: underline;
+}
+
 /* ── SLIDE CONTROLS ─────────────────────────────────────────── */
 .slide-controls {
     position: fixed;
