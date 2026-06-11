@@ -27,16 +27,11 @@
             overflow: hidden;
             pointer-events: none;
         }
-        .video-background iframe {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100vw;
-            height: 56.25vw; /* 16:9 Aspect Ratio */
-            min-height: 100vh;
-            min-width: 177.77vh; /* 16:9 Aspect Ratio */
-            transform: translate(-50%, -50%);
-            opacity: 0.35; /* Subtle background visibility */
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.28; /* Subtle background visibility */
             mix-blend-mode: screen;
         }
         .slide-image {
@@ -109,7 +104,9 @@
             <!-- ══════════════════════════════════════════ -->
             <section class="slide active slide-bg-iss" data-slide="0">
                 <div class="video-background">
-                    <iframe src="https://www.youtube.com/embed/9zK2b7677uA?autoplay=1&mute=1&loop=1&playlist=9zK2b7677uA&controls=0&showinfo=0&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+                    <video autoplay loop muted playsinline poster="images/earth-iss.png">
+                        <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/3/36/Alexander_Gerst%27s_Earth_timelapses_%282017_reissue%29.webm/Alexander_Gerst%27s_Earth_timelapses_%282017_reissue%29.webm.720p.webm" type="video/webm">
+                    </video>
                 </div>
                 <div class="slide-inner slide-center" style="position: relative; z-index: 2;">
                     <div class="slide-logos">
