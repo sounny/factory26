@@ -10,6 +10,59 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="presentation.css">
+    <style>
+        .slide-bg-iss {
+            background: linear-gradient(rgba(12, 12, 14, 0.82), rgba(12, 12, 14, 0.88)), url('images/earth-iss.png') no-repeat center center;
+            background-size: cover;
+        }
+        .slide-image {
+            width: 100%;
+            max-width: 420px;
+            border-radius: var(--radius);
+            border: 1px solid var(--dark-border);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            transition: border-color var(--speed) var(--ease);
+        }
+        .slide-image:hover {
+            border-color: rgba(201, 168, 76, 0.4);
+        }
+        .student-showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .student-project-card {
+            padding: 1.25rem;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-sm);
+            transition: all var(--speed) var(--ease);
+        }
+        .student-project-card:hover {
+            border-color: rgba(201, 168, 76, 0.3);
+            transform: translateY(-2px);
+        }
+        .student-project-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .student-project-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        @media (max-width: 768px) {
+            .student-showcase-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -30,7 +83,7 @@
             <!-- ══════════════════════════════════════════ -->
             <!-- SLIDE 1: TITLE                            -->
             <!-- ══════════════════════════════════════════ -->
-            <section class="slide active" data-slide="0">
+            <section class="slide active slide-bg-iss" data-slide="0">
                 <div class="slide-inner slide-center">
                     <div class="slide-logos">
                         <img src="images/terra-logo.png" alt="TERRA" class="slide-logo">
@@ -57,53 +110,62 @@
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 2: WHY WATER MATTERS                -->
+            <!-- SLIDE 2: AUDIENCE POLL (THE DISCONNECT)   -->
             <!-- ══════════════════════════════════════════ -->
             <section class="slide" data-slide="1">
-                <div class="slide-inner slide-center">
-                    <p class="slide-tag">The Challenge</p>
-                    <h2>Why This Matters</h2>
-                    <p class="slide-body" style="max-width: 640px; margin: 0 auto var(--space-md);">
-                        &ldquo;Water is the lifeblood of our planet.&rdquo; It sustains ecosystems, economies, and communities. Yet it is under threat from pollution, flooding, and rising seas.
-                    </p>
-                    <div class="stat-grid">
-                        <div class="stat-card">
-                            <div class="stat-number">90%</div>
-                            <p>of global economic activity depends on water</p>
+                <div class="slide-inner">
+                    <p class="slide-tag">Audience Poll</p>
+                    <h2>A Silent Revolution</h2>
+                    <div class="slide-grid-2">
+                        <div>
+                            <div class="pilot-card" style="text-align: left; margin-bottom: 1rem; border-left: 3px solid var(--gold);">
+                                <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">Who used GPS today?</h3>
+                                <p style="font-size: 0.95rem; line-height: 1.6;">
+                                    Almost every hand in the room goes up. You used it for maps, weather, ridesharing, or routing a package. It is completely integrated into daily life.
+                                </p>
+                            </div>
+                            <div class="pilot-card" style="text-align: left; border-left: 3px solid var(--accent-blue);">
+                                <h3 style="color: var(--accent-blue); margin-bottom: 0.5rem;">Who used Earth Observation today?</h3>
+                                <p style="font-size: 0.95rem; line-height: 1.6;">
+                                    Almost no hands go up. Yet, satellite data determined the flood risk of your building, assessed the health of the crops for your lunch, and routed the ship carrying your smartphone.
+                                </p>
+                            </div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-number">3 in 4</div>
-                            <p>jobs worldwide rely directly on water resources</p>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">Top 5</div>
-                            <p>Water-related risks rank among the top five global challenges we face today</p>
+                        <div>
+                            <p class="slide-body" style="font-size: 1.15rem; font-weight: 500; color: var(--gold); margin-top: 0.5rem;">
+                                The Earth Observation Disconnect
+                            </p>
+                            <p class="slide-body">
+                                We rely on the insights, but we remain disconnected from the data itself. Satellite information is currently locked behind technical barriers, high processing costs, and complex files.
+                            </p>
+                            <p class="slide-body">
+                                The goal of the TERRA project is to close this gap, translating raw data into immediately actionable decisions for local administrators, coastal managers, and security agencies.
+                            </p>
                         </div>
                     </div>
-                    <p class="slide-note">&mdash; Source: TERRA Overview Video, TERRA Horizon Europe</p>
                 </div>
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 3: WHAT IS EARTH OBSERVATION?       -->
+            <!-- SLIDE 3: THE PERSPECTIVE (OVERVIEW EFFECT) -->
             <!-- ══════════════════════════════════════════ -->
             <section class="slide" data-slide="2">
                 <div class="slide-inner">
-                    <p class="slide-tag">The Basics</p>
-                    <h2>What is Earth Observation?</h2>
+                    <p class="slide-tag">The Perspective</p>
+                    <h2>The Overview Effect</h2>
                     <div class="slide-grid-2">
                         <div>
                             <p class="slide-body">
-                                Earth Observation (EO) is the practice of using satellites to collect information about our planet's physical, chemical, and biological systems. Think of it as a <strong>medical check-up for the Earth</strong>, repeated every few days, from 700 km above.
+                                Astronauts experience a cognitive shift when viewing Earth from orbit: the Overview Effect. They see our planet as a single, fragile, and deeply interconnected ecosystem.
+                            </p>
+                            <p class="slide-body">
+                                Satellite technology grants us this perspective every day. Earth Observation is a continuous medical check-up for the planet, repeated every few days from 700 kilometers above.
                             </p>
                             <ul class="slide-list">
-                                <li><strong>Optical sensors</strong> take photographs in visible and infrared light (like a camera, but much more powerful)</li>
-                                <li><strong>Radar (SAR)</strong> bounces microwaves off the surface, seeing through clouds, day and night</li>
-                                <li><strong>The data is free</strong> and openly available to anyone, anywhere in the world</li>
+                                <li><strong>Optical sensors</strong> capture visible and infrared light, showing changes in vegetation, soil moisture, and water quality</li>
+                                <li><strong>Radar (SAR)</strong> bounces microwaves off the surface, allowing us to see through clouds, day and night</li>
+                                <li><strong>Free historical archives</strong> provide 6 to 8 years of baseline records, letting us trace environmental shifts</li>
                             </ul>
-                            <p class="slide-body" style="font-style: italic; font-size: .85rem; color: var(--text-dim);">
-                                &ldquo;Across land, sea, and atmosphere, satellites continuously capture millions of data points that reveal how our environment evolves.&rdquo;
-                            </p>
                         </div>
                         <div class="eo-visual">
                             <div class="eo-layer">
@@ -157,9 +219,83 @@
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 5: THE GAP                          -->
+            <!-- SLIDE 5: NEW SPACE (PLANET & MAXAR)       -->
             <!-- ══════════════════════════════════════════ -->
             <section class="slide" data-slide="4">
+                <div class="slide-inner">
+                    <p class="slide-tag">The Commercial Constellations</p>
+                    <h2>New Space: Planet &amp; Maxar</h2>
+                    <p class="slide-body" style="margin-bottom: var(--space-md);">
+                        While the European Copernicus fleet provides a comprehensive, free public foundation, commercial New Space constellations add targeted temporal frequency and high spatial detail.
+                    </p>
+                    <div class="slide-grid-2">
+                        <div class="pilot-card" style="text-align: left; padding: 1.5rem;">
+                            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🌍</div>
+                            <h3 style="color: var(--gold-light); font-size: 1.25rem; margin-bottom: 0.5rem;">Planet: Daily Global Coverage</h3>
+                            <p style="font-size: 0.85rem; margin-bottom: 1rem; line-height: 1.5;">
+                                Utilizing a fleet of over 200 Dove CubeSats, Planet images the entire landmass of the Earth every single day.
+                            </p>
+                            <ul class="slide-list" style="font-size: 0.8rem; margin: 0;">
+                                <li><strong>Temporal strength:</strong> Daily revisit rates to spot rapid changes</li>
+                                <li><strong>Spatial resolution:</strong> Approximately 3 meters per pixel</li>
+                                <li><strong>Application:</strong> Deforestation detection, agricultural growth tracking</li>
+                            </ul>
+                        </div>
+                        <div class="pilot-card" style="text-align: left; padding: 1.5rem;">
+                            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🔬</div>
+                            <h3 style="color: var(--gold-light); font-size: 1.25rem; margin-bottom: 0.5rem;">Maxar: Ultra-High Resolution</h3>
+                            <p style="font-size: 0.85rem; margin-bottom: 1rem; line-height: 1.5;">
+                                Deploying large, high-altitude optical satellites, Maxar captures detailed, task-specific imagery of target regions.
+                            </p>
+                            <ul class="slide-list" style="font-size: 0.8rem; margin: 0;">
+                                <li><strong>Spatial strength:</strong> Extreme visual detail</li>
+                                <li><strong>Spatial resolution:</strong> Up to 30 centimeters per pixel</li>
+                                <li><strong>Application:</strong> Infrastructure monitoring, damage mapping, defense</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="slide-note">Fusing the free, systematic Sentinel data with commercial targeted imagery yields complete environmental intelligence.</p>
+                </div>
+            </section>
+
+            <!-- ══════════════════════════════════════════ -->
+            <!-- SLIDE 6: THE RESOLUTION TRIANGLE          -->
+            <!-- ══════════════════════════════════════════ -->
+            <section class="slide" data-slide="5">
+                <div class="slide-inner">
+                    <p class="slide-tag">Satellite Fundamentals</p>
+                    <h2>The Three Dimensions of Resolution</h2>
+                    <div class="slide-grid-2">
+                        <div>
+                            <p class="slide-body">
+                                When designing an Earth Observation service, developers must navigate a fundamental trade-off between three types of resolution:
+                            </p>
+                            <ul class="slide-list">
+                                <li>
+                                    <strong>Spatial Resolution:</strong> The size of the smallest object detectable on the ground. Ranges from 10 meters (Sentinel-2) to 30 centimeters (Maxar).
+                                </li>
+                                <li>
+                                    <strong>Temporal Resolution:</strong> The frequency of passes over the same location. Ranges from weeks, to 5 days (Sentinel-2), to daily (Planet).
+                                </li>
+                                <li>
+                                    <strong>Spectral Resolution:</strong> The number and width of light bands captured. Allows sensors to look beyond visible light to identify water stress, chlorophyll, or soil types.
+                                </li>
+                            </ul>
+                            <p class="slide-body" style="font-style: italic; font-size: 0.85rem; color: var(--text-dim); margin-top: 1rem;">
+                                No single satellite excels at all three. True intelligence relies on data fusion: merging various satellites to get the best of each parameter.
+                            </p>
+                        </div>
+                        <div style="display: flex; justify-content: center; align-items: center;">
+                            <img src="images/resolution-triangle.png" alt="Spatial, Temporal, and Spectral Resolution Triangle" class="slide-image">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ══════════════════════════════════════════ -->
+            <!-- SLIDE 7: THE VALUE GAP                    -->
+            <!-- ══════════════════════════════════════════ -->
+            <section class="slide" data-slide="6">
                 <div class="slide-inner slide-center">
                     <p class="slide-tag">The Value Gap</p>
                     <h2>25 Terabytes per Day. Zero Decisions.</h2>
@@ -168,67 +304,68 @@
                     </p>
                     <div class="gap-grid">
                         <div class="gap-card">
-                            <div class="gap-icon">&#128736;&#65039;</div>
+                            <div class="gap-icon">&#128187;</div>
                             <h4>Too Technical</h4>
-                            <p>Raw data requires specialized processing that most agencies lack.</p>
+                            <p>Raw satellite data requires advanced pre-processing and GIS expertise.</p>
                         </div>
                         <div class="gap-card">
                             <div class="gap-icon">&#128196;</div>
                             <h4>Incompatible Formats</h4>
-                            <p>Different satellites produce data in different formats and projections.</p>
+                            <p>Different sensors produce data in different coordinate systems and file types.</p>
                         </div>
                         <div class="gap-card">
                             <div class="gap-icon">&#9201;&#65039;</div>
                             <h4>Satellites Miss Days</h4>
-                            <p>Satellites can't provide data daily; gaps must be filled with AI augmentation.</p>
+                            <p>Orbits have gaps. We need data interpolation and modeling to fill the intervals.</p>
                         </div>
                         <div class="gap-card">
                             <div class="gap-icon">&#127979;</div>
-                            <h4>No Training</h4>
-                            <p>Limited capacity for EO integration in regional administrations.</p>
+                            <h4>No Integration</h4>
+                            <p>Traditional public services lack the tools to ingest raw satellite streams.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 6: ENTER TERRA - DECISIONS NOT PIXELS -->
+            <!-- SLIDE 8: THE INTELLIGENCE LAYER           -->
             <!-- ══════════════════════════════════════════ -->
-            <section class="slide" data-slide="5">
+            <section class="slide" data-slide="7">
                 <div class="slide-inner">
-                    <p class="slide-tag">The New Frontier</p>
+                    <p class="slide-tag">The Solutions Layer</p>
                     <h2>Decisions, Not Pixels</h2>
                     <div class="slide-grid-2">
                         <div>
                             <p class="slide-body">
-                                The old model of Earth Observation sold <strong>imagery</strong>: raw pixels that required experts to interpret. The new frontier sells <strong>processed intelligence</strong>: answers that any decision-maker can act on immediately.
+                                The traditional Earth Observation model sells imagery: raw pixels that require highly trained researchers to analyze.
+                            </p>
+                            <p class="slide-body" style="font-weight: 500; color: var(--gold);">
+                                The new frontier sells processed intelligence: clear answers that any decision-maker can understand and act on immediately.
                             </p>
                             <p class="slide-body">
-                                <strong>TERRA</strong> is the <em>intelligent last-mile service layer</em> that closes this gap, transforming Copernicus data into six operational products:
+                                <strong>TERRA</strong> acts as the intelligent last-mile service layer. It automatically processes, calibrates, and fuses raw data streams, transforming Copernicus pixels into six operational outputs:
                             </p>
-                            <ul class="slide-list">
-                                <li><strong>Pollution alerts</strong> that arrive 48 hours before ground sensors detect them</li>
-                                <li><strong>Hazard maps</strong> showing where contamination is moving and what to do about it</li>
-                                <li><strong>"Dark vessel" detection</strong> that finds ships hiding from tracking systems</li>
-                                <li><strong>Erosion forecasts</strong> that predict where your coastline will be next year</li>
-                                <li><strong>Policy briefs</strong> that translate findings into regulatory action</li>
-                                <li><strong>Digital Twins</strong> that let planners simulate "what if" scenarios</li>
+                            <ul class="slide-list" style="font-size: 0.85rem;">
+                                <li><strong>Pollution Alerts:</strong> Automated warnings sent before beach arrival</li>
+                                <li><strong>Hazard Maps:</strong> Real-time visualizations showing plume movement</li>
+                                <li><strong>Vessel Indicators:</strong> Flags identifying ships that turned off transponders</li>
+                                <li><strong>Erosion Forecasts:</strong> 5-year predictions of shoreline retreat</li>
                             </ul>
                         </div>
                         <div class="terra-flow">
                             <div class="flow-step">
                                 <div class="flow-label">Pixels</div>
-                                <div class="flow-sub">25 TB/day from Sentinel-1, 2, 3 + drones + sensors</div>
+                                <div class="flow-sub">25 TB/day from Sentinel-1, 2, 3, drone fleets, and IoT sensors</div>
                             </div>
                             <div class="flow-arrow">&#8595;</div>
                             <div class="flow-step flow-highlight">
                                 <div class="flow-label">TERRA Intelligence Engine</div>
-                                <div class="flow-sub">AI &middot; Data Fusion &middot; Digital Twins &middot; RESTful APIs</div>
+                                <div class="flow-sub">AI Analytics, Data Fusion, Digital Twins, and RESTful APIs</div>
                             </div>
                             <div class="flow-arrow">&#8595;</div>
                             <div class="flow-step">
                                 <div class="flow-label">Decisions</div>
-                                <div class="flow-sub">Alerts, Forecasts, Hazard Maps, Policy Briefs</div>
+                                <div class="flow-sub">Automated alerts, local forecasts, maps, and policy briefs</div>
                             </div>
                         </div>
                     </div>
@@ -236,9 +373,9 @@
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 7: THREE PILOTS                     -->
+            <!-- SLIDE 9: THREE PILOTS                     -->
             <!-- ══════════════════════════════════════════ -->
-            <section class="slide" data-slide="6">
+            <section class="slide" data-slide="8">
                 <div class="slide-inner">
                     <p class="slide-tag">Real Stories</p>
                     <h2>Three Pilots Across Europe</h2>
@@ -247,21 +384,21 @@
                             <div class="pilot-flag">&#127468;&#127479;</div>
                             <h3>Greece: Water Pollution</h3>
                             <p class="pilot-location">Sperchios River &amp; Maliakos Gulf, Fthiotida</p>
-                            <p><strong>The pixel:</strong> Sentinel-2 chlorophyll concentration values. <strong>The decision:</strong> &ldquo;Close Beach X in 48 hours; pollution plume arriving from upstream.&rdquo; TERRA fuses satellite + USV drone data to forecast how contamination travels from river to coast, affecting <strong>550,000 people</strong>.</p>
+                            <p style="font-size: 0.8rem; line-height: 1.5;"><strong>The pixel:</strong> Sentinel-2 chlorophyll concentration values. <strong>The decision:</strong> Close Beach X in 48 hours; pollution plume arriving from upstream. TERRA fuses satellite and USV drone data to forecast how contamination travels, protecting 550,000 residents.</p>
                             <div class="pilot-tech">Sentinel-2 + Sentinel-3 &middot; USV IoT Sensors &middot; LSTM AI &middot; Predictive Water Quality Index</div>
                         </div>
                         <div class="pilot-card pilot-detailed">
                             <div class="pilot-flag">&#127477;&#127473;</div>
                             <h3>Poland: Maritime Security</h3>
                             <p class="pilot-location">Port of Gdansk, Baltic Sea</p>
-                            <p><strong>The pixel:</strong> SAR radar backscatter from the Baltic Sea. <strong>The decision:</strong> &ldquo;Vessel at 54.3&deg;N has gone dark; dispatch patrol.&rdquo; TERRA fuses satellite radar with ship tracking to detect vessels that switch off their transponders, plus monitors 6-8 years of land and water chemistry trends.</p>
+                            <p style="font-size: 0.8rem; line-height: 1.5;"><strong>The pixel:</strong> SAR radar backscatter from the Baltic Sea. <strong>The decision:</strong> Vessel at 54.3 degrees North has gone dark; dispatch patrol. TERRA fuses satellite radar with ship tracking to detect vessels that switch off their transponders.</p>
                             <div class="pilot-tech">Sentinel-1 SAR &middot; SAR-AIS Fusion AI &middot; NDVI &middot; DOM/Chlorophyll Analysis</div>
                         </div>
                         <div class="pilot-card pilot-detailed">
                             <div class="pilot-flag">&#127468;&#127463;</div>
                             <h3>Scotland: Coastal Erosion</h3>
                             <p class="pilot-location">Scottish Coastline, UK</p>
-                            <p><strong>The pixel:</strong> Multispectral reflectance along the Scottish coast. <strong>The decision:</strong> &ldquo;This 200m stretch will retreat 3 metres by 2028; relocate infrastructure.&rdquo; TERRA's Digital Twin tracks the vegetation edge, not the waterline, using fixed transects that let it observe, remember, and forecast.</p>
+                            <p style="font-size: 0.8rem; line-height: 1.5;"><strong>The pixel:</strong> Multispectral reflectance along the Scottish coast. <strong>The decision:</strong> This 200m stretch will retreat 3 metres by 2028; relocate infrastructure. TERRA's Digital Twin tracks the vegetation edge, not the shifting waterline.</p>
                             <div class="pilot-tech">Sentinel-1 + 2 &middot; U-Net + Mamba-LSTM &middot; VHSet Extraction &middot; Uncertainty Mapping</div>
                         </div>
                     </div>
@@ -269,9 +406,9 @@
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 8: KEY RESULTS                      -->
+            <!-- SLIDE 10: KEY RESULTS                      -->
             <!-- ══════════════════════════════════════════ -->
-            <section class="slide" data-slide="7">
+            <section class="slide" data-slide="9">
                 <div class="slide-inner slide-center">
                     <p class="slide-tag">Impact</p>
                     <h2>From Reactive to Proactive</h2>
@@ -290,50 +427,83 @@
                         </div>
                     </div>
                     <p class="slide-body" style="max-width: 620px; margin: var(--space-md) auto 0;">
-                        The paradigm shift: traditional monitoring reacts to events after they happen. TERRA's AI-driven intelligence <strong>predicts them before they occur</strong>. The old EO model sold images for experts; TERRA sells answers for everyone.
+                        The paradigm shift: traditional monitoring reacts to events after they happen. TERRA's AI-driven intelligence predicts environmental threats before they occur, changing satellite images into active answers.
                     </p>
                 </div>
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 9: WHO BENEFITS                     -->
+            <!-- SLIDE 11: STUDENT SHOWCASE                -->
             <!-- ══════════════════════════════════════════ -->
-            <section class="slide" data-slide="8">
-                <div class="slide-inner slide-center">
-                    <p class="slide-tag">Stakeholders</p>
-                    <h2>Who Does TERRA Empower?</h2>
-                    <p class="slide-body" style="max-width: 620px; margin: 0 auto var(--space-md);">
-                        &ldquo;TERRA builds a tangible bridge between scientific innovation and the protection of territories and communities.&rdquo;
+            <section class="slide" data-slide="10">
+                <div class="slide-inner">
+                    <p class="slide-tag">Advanced Studies Showcase</p>
+                    <h2>The Intelligence Layer in Action</h2>
+                    <p class="slide-body" style="margin-bottom: 0.5rem;">
+                        ISU students applied the TERRA concept of "Decisions, Not Pixels" to build operational prototypes in just two weeks, translating raw satellite records into intuitive web applications.
                     </p>
-                    <div class="gap-grid">
-                        <div class="gap-card">
-                            <div class="gap-icon">&#128187;</div>
-                            <h4>Developers</h4>
-                            <p>A flexible platform to build innovative solutions on top of Copernicus data</p>
+                    <div class="student-showcase-grid">
+                        <div class="student-project-card">
+                            <div class="student-project-title">🚢 LogiRhein Live</div>
+                            <p class="student-project-desc">
+                                Fuses Rhine water level gauges with historical models to predict shipping bottlenecks 2 to 4 weeks in advance, suggesting multimodal cargo rerouting via an AI assistant.
+                            </p>
                         </div>
-                        <div class="gap-card">
-                            <div class="gap-icon">&#127963;&#65039;</div>
-                            <h4>Policy Makers</h4>
-                            <p>Data visualizations, maps, and policy briefs to guide evidence-based decisions</p>
+                        <div class="student-project-card">
+                            <div class="student-project-title">🌍 ABIL</div>
+                            <p class="student-project-desc">
+                                Maps corporate assets to satellite observations, converting raw Sentinel-2 and 3 thermal and spectral records into a real-time ESG compliance score per facility.
+                            </p>
                         </div>
-                        <div class="gap-card">
-                            <div class="gap-icon">&#128188;</div>
-                            <h4>SMEs &amp; Industry</h4>
-                            <p>Powerful open-source tools that lower barriers to market entry</p>
+                        <div class="student-project-card">
+                            <div class="student-project-title">🛒 GiveMeSpace</div>
+                            <p class="student-project-desc">
+                                Builds a centralized, secure space industry marketplace that connects satellite data providers directly with non-expert enterprise customers.
+                            </p>
                         </div>
-                        <div class="gap-card">
-                            <div class="gap-icon">&#128101;</div>
-                            <h4>Citizens</h4>
-                            <p>Improved climate resilience, protecting communities and the environment</p>
+                        <div class="student-project-card">
+                            <div class="student-project-title">🌊 OceanSentinel</div>
+                            <p class="student-project-desc">
+                                Detects illegal maritime activities by running AI-powered anomaly detection on Sentinel-1 radar, sending automated Telegram alerts to coast guard patrols.
+                            </p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 10: YOUR TURN - INTERACTIVE STATIONS -->
+            <!-- SLIDE 12: GPS ANALOGY                     -->
             <!-- ══════════════════════════════════════════ -->
-            <section class="slide" data-slide="9">
+            <section class="slide" data-slide="11">
+                <div class="slide-inner">
+                    <p class="slide-tag">The Democratization of Space</p>
+                    <h2>The GPS Analogy</h2>
+                    <div class="slide-grid-2">
+                        <div>
+                            <p class="slide-body">
+                                In the 1990s, GPS was a complex technology. Using it required specialized receivers, physical charts, and mathematical training in coordinate systems.
+                            </p>
+                            <p class="slide-body">
+                                Today, nobody reads latitude and longitude to get around. Instead, we use a navigation app that processes the raw GPS signal in the background and delivers a simple decision: "Turn left in 100 meters."
+                            </p>
+                            <p class="slide-body" style="font-weight: 500; color: var(--gold);">
+                                Earth Observation is currently where GPS was in the 1990s.
+                            </p>
+                            <p class="slide-body">
+                                Public planners do not need to understand satellite orbits or band reflectance. They need the equivalent of a navigation app: a clean dashboard showing exactly where water stress, erosion, or pollution is happening.
+                            </p>
+                        </div>
+                        <div style="display: flex; justify-content: center; align-items: center;">
+                            <img src="images/gps-eo-analogy.png" alt="GPS vs Earth Observation Analogy Graphic" class="slide-image">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ══════════════════════════════════════════ -->
+            <!-- SLIDE 13: YOUR TURN - INTERACTIVE STATIONS -->
+            <!-- ══════════════════════════════════════════ -->
+            <section class="slide" data-slide="12">
                 <div class="slide-inner slide-center">
                     <p class="slide-tag">Hands-On</p>
                     <h2>Your Turn: Interactive Stations</h2>
@@ -362,9 +532,9 @@
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 11: CLOSING                         -->
+            <!-- SLIDE 14: CLOSING                         -->
             <!-- ══════════════════════════════════════════ -->
-            <section class="slide" data-slide="10">
+            <section class="slide" data-slide="13">
                 <div class="slide-inner slide-center">
                     <div class="slide-logos">
                         <img src="images/terra-logo.png" alt="TERRA" class="slide-logo">
@@ -408,12 +578,12 @@
             <div class="slide-progress">
                 <span class="slide-current">1</span>
                 <span class="slide-sep">/</span>
-                <span class="slide-total">11</span>
+                <span class="slide-total">14</span>
             </div>
             <button class="slide-btn" id="next-btn" aria-label="Next slide">&rarr;</button>
         </div>
     </main>
 
-    <script src="slides.js"></script>
+    <script src="slides.js?v=2"></script>
 </body>
 </html>

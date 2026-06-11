@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         /* Outgoing slide */
         slides[current].classList.remove('active');
-        slides[current].classList.add(index > current ? 'exit-left' : '');
+        if (index > current) slides[current].classList.add('exit-left');
 
         /* Clean up exit class after transition */
         const outgoing = slides[current];
