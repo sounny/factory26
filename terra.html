@@ -274,6 +274,11 @@
             border-color: rgba(201, 168, 76, 0.5) !important;
             box-shadow: 0 10px 30px rgba(0,0,0,0.6) !important;
         }
+        .quiz-option-btn:hover {
+            border-color: rgba(201, 168, 76, 0.4) !important;
+            color: var(--gold-light) !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+        }
     </style>
 </head>
 <body>
@@ -529,9 +534,27 @@
                                     <strong>Spectral Resolution:</strong> The number and width of light bands captured. Allows sensors to look beyond visible light to identify water stress, chlorophyll, or soil types.
                                 </li>
                             </ul>
-                            <p class="slide-body" style="font-style: italic; font-size: 0.85rem; color: var(--text-dim); margin-top: 1rem;">
-                                No single satellite excels at all three. True intelligence relies on data fusion: merging various satellites to get the best of each parameter.
-                            </p>
+                            <!-- Interactive Quick Quiz -->
+                            <div class="pilot-card" style="margin-top: 1rem; padding: 0.75rem 1rem; border-left: 2px solid var(--gold); background: rgba(20, 20, 25, 0.4); text-align: left;">
+                                <strong style="color: var(--gold-light); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.35rem;">
+                                    🧠 Quick Check: Test Your Knowledge
+                                </strong>
+                                <p style="font-size: 0.8rem; margin: 0 0 0.5rem; line-height: 1.4;">
+                                    What are the three fundamental dimensions of remote sensing resolution?
+                                </p>
+                                <div style="display: grid; grid-template-columns: 1fr; gap: 0.4rem;">
+                                    <button class="quiz-option-btn" onclick="checkQuizAnswer(this, false, 'Try again! Spatial, temporal, and spectral are the core dimensions.')" style="background: rgba(255,255,255,0.05); border: 1px solid var(--dark-border); color: var(--text-muted); border-radius: 4px; padding: 0.45rem; font-size: 0.75rem; text-align: left; cursor: pointer; transition: all 0.2s; outline: none; width: 100%;">
+                                        A. Spatial, Spectral, and Radiometric
+                                    </button>
+                                    <button class="quiz-option-btn" onclick="checkQuizAnswer(this, true, 'Correct! Spatial (size), Temporal (frequency), and Spectral (wavelength bands) form the resolution triangle.')" style="background: rgba(255,255,255,0.05); border: 1px solid var(--dark-border); color: var(--text-muted); border-radius: 4px; padding: 0.45rem; font-size: 0.75rem; text-align: left; cursor: pointer; transition: all 0.2s; outline: none; width: 100%;">
+                                        B. Spatial, Temporal, and Spectral
+                                    </button>
+                                    <button class="quiz-option-btn" onclick="checkQuizAnswer(this, false, 'Try again! Spatial, temporal, and spectral are the core dimensions.')" style="background: rgba(255,255,255,0.05); border: 1px solid var(--dark-border); color: var(--text-muted); border-radius: 4px; padding: 0.45rem; font-size: 0.75rem; text-align: left; cursor: pointer; transition: all 0.2s; outline: none; width: 100%;">
+                                        C. Orbital, Temporal, and Thermal
+                                    </button>
+                                </div>
+                                <div class="quiz-feedback" style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--gold-light); display: none; line-height: 1.4;"></div>
+                            </div>
                         </div>
                         <div style="display: flex; justify-content: center; align-items: center;">
                             <img src="images/resolution-triangle.png" alt="Spatial, Temporal, and Spectral Resolution Triangle" class="slide-image">
@@ -577,11 +600,35 @@
                                 </p>
                             </div>
                         </div>
-                        <div style="position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                            <img src="images/processing-levels.png" class="slide-image clickable-image" alt="Data Processing Levels Diagram" onclick="openLightbox(this.src, 'Data Processing Levels - Raw sensor telemetry (L0) to geolocated Top of Atmosphere (L1), Bottom of Atmosphere Surface Reflectance (L2), Geophysical Indices (L3), and Decision Intelligence (L4)')" style="max-height: 340px; width: 100%; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--dark-border);">
-                            <span style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.75); color: var(--gold-light); font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(201,168,76,0.3); pointer-events: none; display: flex; align-items: center; gap: 0.3rem;">
-                                <span>🔍 Click to Zoom</span>
-                            </span>
+                        <div style="position: relative; width: 100%; display: flex; flex-direction: column; align-items: stretch; justify-content: center; gap: 0.75rem;">
+                            <div style="position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--dark-border); background: #0c0c0e; padding: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+                                <img src="images/processing-levels.png" class="clickable-image" alt="Data Processing Levels Diagram" onclick="openLightbox(this.src, 'Data Processing Levels - Raw sensor telemetry (L0) to geolocated Top of Atmosphere (L1), Bottom of Atmosphere Surface Reflectance (L2), Geophysical Indices (L3), and Decision Intelligence (L4)')" style="max-height: 180px; width: 100%; object-fit: contain; display: block; border-radius: 4px;">
+                                <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.75); color: var(--gold-light); font-size: 0.6rem; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(201,168,76,0.3); pointer-events: none; display: flex; align-items: center; gap: 0.2rem;">
+                                    <span>🔍 Click to Zoom</span>
+                                </span>
+                            </div>
+                            
+                            <!-- Interactive Quick Quiz L2 -->
+                            <div class="pilot-card" style="padding: 0.75rem; border-left: 2px solid var(--accent-blue); background: rgba(20, 20, 25, 0.4); text-align: left; margin: 0;">
+                                <strong style="color: var(--accent-blue); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.35rem;">
+                                    🧠 Quick Check: Test Your Knowledge
+                                </strong>
+                                <p style="font-size: 0.8rem; margin: 0 0 0.5rem; line-height: 1.4;">
+                                    Which data processing level represents atmospherically corrected Surface Reflectance?
+                                </p>
+                                <div style="display: grid; grid-template-columns: 1fr; gap: 0.4rem;">
+                                    <button class="quiz-option-btn" onclick="checkQuizAnswer(this, false, 'Try again! Level 1 is geolocated and calibrated but still contains atmospheric distortion.')" style="background: rgba(255,255,255,0.05); border: 1px solid var(--dark-border); color: var(--text-muted); border-radius: 4px; padding: 0.4rem; font-size: 0.75rem; text-align: left; cursor: pointer; transition: all 0.2s; outline: none; width: 100%;">
+                                        A. Level 1 (Top of Atmosphere)
+                                    </button>
+                                    <button class="quiz-option-btn" onclick="checkQuizAnswer(this, true, 'Correct! Level 2 represents Surface Reflectance (Bottom of Atmosphere) after atmospheric correction.')" style="background: rgba(255,255,255,0.05); border: 1px solid var(--dark-border); color: var(--text-muted); border-radius: 4px; padding: 0.4rem; font-size: 0.75rem; text-align: left; cursor: pointer; transition: all 0.2s; outline: none; width: 100%;">
+                                        B. Level 2 (Surface Reflectance)
+                                    </button>
+                                    <button class="quiz-option-btn" onclick="checkQuizAnswer(this, false, 'Try again! Level 3 represents geophysical variables like vegetation or water indices.')" style="background: rgba(255,255,255,0.05); border: 1px solid var(--dark-border); color: var(--text-muted); border-radius: 4px; padding: 0.4rem; font-size: 0.75rem; text-align: left; cursor: pointer; transition: all 0.2s; outline: none; width: 100%;">
+                                        C. Level 3 (Geophysical Variables)
+                                    </button>
+                                </div>
+                                <div class="quiz-feedback" style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--accent-blue); display: none; line-height: 1.4;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -826,17 +873,32 @@
                     <div class="slide-grid-2">
                         <div>
                             <p class="slide-body">
-                                In the 1990s, GPS was a complex technology. Using it required specialized receivers, physical charts, and mathematical training in coordinate systems.
+                                In the 1990s, GPS was a complex technology requiring specialized receivers and mathematical training. Today, we simply use a navigation app that processes the raw signals in the background and delivers a simple decision: "Turn left in 100 meters."
                             </p>
-                            <p class="slide-body">
-                                Today, nobody reads latitude and longitude to get around. Instead, we use a navigation app that processes the raw GPS signal in the background and delivers a simple decision: "Turn left in 100 meters."
+                            <p class="slide-body" style="font-weight: 500; color: var(--gold); margin-bottom: 0.75rem;">
+                                Earth Observation is currently where GPS was in the 1990s. Planners do not need satellite physics; they need a clean decision dashboard.
                             </p>
-                            <p class="slide-body" style="font-weight: 500; color: var(--gold);">
-                                Earth Observation is currently where GPS was in the 1990s.
-                            </p>
-                            <p class="slide-body">
-                                Public planners do not need to understand satellite orbits or band reflectance. They need the equivalent of a navigation app: a clean dashboard showing exactly where water stress, erosion, or pollution is happening.
-                            </p>
+                            <!-- Interactive Quick Quiz GPS -->
+                            <div class="pilot-card" style="margin-top: 1rem; padding: 0.75rem 1rem; border-left: 2px solid var(--gold); background: rgba(20, 20, 25, 0.4); text-align: left;">
+                                <strong style="color: var(--gold-light); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.35rem;">
+                                    🧠 Quick Check: Test Your Knowledge
+                                </strong>
+                                <p style="font-size: 0.8rem; margin: 0 0 0.5rem; line-height: 1.4;">
+                                    In which decade was GPS at a similar "expert-only" complexity level as Earth Observation is today?
+                                </p>
+                                <div style="display: grid; grid-template-columns: 1fr; gap: 0.4rem;">
+                                    <button class="quiz-option-btn" onclick="checkQuizAnswer(this, false, 'Try again! In the 1970s, GPS was in its early experimental phase.')" style="background: rgba(255,255,255,0.05); border: 1px solid var(--dark-border); color: var(--text-muted); border-radius: 4px; padding: 0.45rem; font-size: 0.75rem; text-align: left; cursor: pointer; transition: all 0.2s; outline: none; width: 100%;">
+                                        A. 1970s
+                                    </button>
+                                    <button class="quiz-option-btn" onclick="checkQuizAnswer(this, true, 'Correct! In the 1990s, GPS was powerful but complex, requiring specialized hardware and training before becoming consumer-friendly.')" style="background: rgba(255,255,255,0.05); border: 1px solid var(--dark-border); color: var(--text-muted); border-radius: 4px; padding: 0.45rem; font-size: 0.75rem; text-align: left; cursor: pointer; transition: all 0.2s; outline: none; width: 100%;">
+                                        B. 1990s
+                                    </button>
+                                    <button class="quiz-option-btn" onclick="checkQuizAnswer(this, false, 'Try again! By the 2010s, GPS was already fully democratized into smartphone navigation apps.')" style="background: rgba(255,255,255,0.05); border: 1px solid var(--dark-border); color: var(--text-muted); border-radius: 4px; padding: 0.45rem; font-size: 0.75rem; text-align: left; cursor: pointer; transition: all 0.2s; outline: none; width: 100%;">
+                                        C. 2010s
+                                    </button>
+                                </div>
+                                <div class="quiz-feedback" style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--gold-light); display: none; line-height: 1.4;"></div>
+                            </div>
                         </div>
                         <div style="display: flex; justify-content: center; align-items: center; position: relative; width: 100%;">
                             <img src="images/gps-eo-analogy.png" alt="GPS vs Earth Observation Analogy Graphic" class="slide-image clickable-image" onclick="openLightbox(this.src, 'The GPS Analogy - Standardizing Earth Observation data into direct dashboard decisions')" style="max-height: 320px; width: 100%; object-fit: contain; border-radius: var(--radius); border: 1px solid var(--dark-border);">
@@ -914,6 +976,13 @@
                                         <span>Sentinel-2 + Sentinel-3 &middot; Fuses WQI &middot; UTH Lead</span>
                                         <a href="https://terra-horizon.eu/terra-demonstrator-1-sperchios/" target="_blank" style="color: var(--gold-light); text-decoration: underline; font-weight: 600;">Explore Live Demonstrator</a>
                                     </div>
+                                    <!-- Greece Thumbnail -->
+                                    <div style="position: relative; margin-top: 0.75rem; border-radius: 6px; overflow: hidden; border: 1px solid var(--dark-border); background: #0c0c0e; padding: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); max-width: 320px;">
+                                        <img src="images/greece-river.jpg" class="clickable-image" alt="Sperchios River Delta - Greece Water Quality" onclick="openLightbox(this.src, 'Sperchios River Delta (Greece): In situ drone and Sentinel observations of agricultural runoff')" style="max-height: 100px; width: 100%; object-fit: cover; display: block; border-radius: 4px;">
+                                        <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.75); color: var(--gold-light); font-size: 0.6rem; padding: 1px 4px; border-radius: 3px; border: 1px solid rgba(201,168,76,0.3); pointer-events: none; display: flex; align-items: center; gap: 0.2rem;">
+                                            <span>🔍 High-Res Delta Observations</span>
+                                        </span>
+                                    </div>
                                 </div>
                                 <div style="display: flex; flex-direction: column; align-items: center;">
                                     <!-- Interactive Comparison Slider -->
@@ -986,6 +1055,13 @@
                                         <span style="font-size: 1rem;">⚠️</span>
                                         <span><strong>ALERT:</strong> Dark Vessel Detected (AIS Status: OFF). Coordinating dispatch with Polish Maritime Patrol.</span>
                                     </div>
+                                    <!-- Poland Thumbnail -->
+                                    <div style="position: relative; margin-top: 0.75rem; border-radius: 6px; overflow: hidden; border: 1px solid var(--dark-border); background: #0c0c0e; padding: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); max-width: 320px;">
+                                        <img src="images/gdansk-dataset.png" class="clickable-image" alt="Gdansk Vessel Detection Dataset & Results" onclick="openLightbox(this.src, 'Gdansk Vessel Detection (Poland): Sentinel-1 SAR training dataset and deep learning results')" style="max-height: 100px; width: 100%; object-fit: cover; display: block; border-radius: 4px;">
+                                        <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.75); color: var(--gold-light); font-size: 0.6rem; padding: 1px 4px; border-radius: 3px; border: 1px solid rgba(201,168,76,0.3); pointer-events: none; display: flex; align-items: center; gap: 0.2rem;">
+                                            <span>🔍 SAR Dataset & ML Results</span>
+                                        </span>
+                                    </div>
                                 </div>
                                 <div style="display: flex; flex-direction: column; align-items: center;">
                                     <!-- Radar Screen -->
@@ -1034,6 +1110,13 @@
                                         <button class="year-btn" onclick="setErosionYear(2, this)">2022</button>
                                         <button class="year-btn" onclick="setErosionYear(3, this)">2024</button>
                                         <button class="year-btn" onclick="setErosionYear(4, this)">2026</button>
+                                    </div>
+                                    <!-- Scotland Thumbnail -->
+                                    <div style="position: relative; margin-top: 0.75rem; border-radius: 6px; overflow: hidden; border: 1px solid var(--dark-border); background: #0c0c0e; padding: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); max-width: 320px;">
+                                        <img src="images/scotland-shoreline.png" class="clickable-image" alt="Scotland Shoreline Spit Observation" onclick="openLightbox(this.src, 'Scotland Shoreline Spit: Sentinel-2 high-fidelity coastal erosion observations')" style="max-height: 100px; width: 100%; object-fit: cover; display: block; border-radius: 4px;">
+                                        <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.75); color: var(--gold-light); font-size: 0.6rem; padding: 1px 4px; border-radius: 3px; border: 1px solid rgba(201,168,76,0.3); pointer-events: none; display: flex; align-items: center; gap: 0.2rem;">
+                                            <span>🔍 Shoreline Spit Sentinel-2</span>
+                                        </span>
                                     </div>
                                 </div>
                                 <div style="display: flex; flex-direction: column; align-items: center;">
@@ -1099,15 +1182,15 @@
             <!-- ══════════════════════════════════════════ -->
             <section class="slide" data-slide="15">
                 <div class="slide-inner slide-center" style="max-width: 1000px;">
-                    <div class="slide-logos">
+                    <div class="slide-logos" style="gap: 3.5rem; margin-bottom: 2.5rem;">
                         <a href="https://terra-horizon.eu/" target="_blank" rel="noopener">
-                            <img src="images/terra-logo.png" alt="TERRA" class="slide-logo" style="cursor: pointer;">
+                            <img src="images/terra-logo.png" alt="TERRA" class="slide-logo" style="height: 84px; cursor: pointer; opacity: 0.95;">
                         </a>
                         <a href="https://www.isunet.edu/" target="_blank" rel="noopener">
-                            <img src="images/isu-logo.png" alt="ISU" class="slide-logo slide-logo-invert" style="cursor: pointer;">
+                            <img src="images/isu-logo.png" alt="ISU" class="slide-logo slide-logo-invert" style="height: 84px; cursor: pointer; opacity: 0.95;">
                         </a>
                         <a href="https://commission.europa.eu/funding-tenders/find-funding/eu-funding-programmes/horizon-europe_en" target="_blank" rel="noopener">
-                            <img src="images/eu-funded.png" alt="EU Funded" class="slide-logo" style="cursor: pointer;">
+                            <img src="images/eu-funded.png" alt="EU Funded" class="slide-logo" style="height: 84px; cursor: pointer; opacity: 0.95;">
                         </a>
                     </div>
                     <p class="slide-tag">Thank You</p>
@@ -1120,12 +1203,30 @@
                         <strong>Project Details:</strong> Grant No. 101189962 &middot; Duration: 3 Years (1 Jan 2025 to 31 Dec 2027) &middot; Funding: &euro;1,999,970.45.
                     </p>
 
-                    <!-- Consortium Partners Grid Image -->
-                    <div style="position: relative; max-width: 600px; margin: 1.25rem auto 1.25rem; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--dark-border); background: #1a3330; padding: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);">
-                        <img src="images/partners.png" class="clickable-image" alt="TERRA Consortium Partners" onclick="openLightbox(this.src, 'TERRA Consortium Partners - 9 institutions across 7 European countries')" style="max-height: 220px; width: 100%; object-fit: contain; display: block; border-radius: calc(var(--radius) - 4px);">
-                        <span style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.75); color: var(--gold-light); font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(201,168,76,0.3); pointer-events: none; display: flex; align-items: center; gap: 0.3rem;">
-                            <span>🔍 Click to Zoom</span>
-                        </span>
+                    <!-- Consortium Partners and Webinar QR Section -->
+                    <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.5rem; max-width: 720px; margin: 1.25rem auto; align-items: center;">
+                        <!-- Left Column: Partners Grid -->
+                        <div style="position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--dark-border); background: #1a3330; padding: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);">
+                            <img src="images/partners.png" class="clickable-image" alt="TERRA Consortium Partners" onclick="openLightbox(this.src, 'TERRA Consortium Partners - 9 institutions across 7 European countries')" style="max-height: 180px; width: 100%; object-fit: contain; display: block; border-radius: calc(var(--radius) - 4px);">
+                            <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.75); color: var(--gold-light); font-size: 0.6rem; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(201,168,76,0.3); pointer-events: none; display: flex; align-items: center; gap: 0.2rem;">
+                                <span>🔍 Click to Zoom</span>
+                            </span>
+                        </div>
+                        
+                        <!-- Right Column: Webinar QR Code -->
+                        <div class="pilot-card" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem; text-align: left; background: rgba(20, 20, 25, 0.4); border-color: rgba(201, 168, 76, 0.25); margin: 0; min-height: 120px;">
+                            <div style="position: relative; width: 84px; height: 84px; border-radius: 6px; overflow: hidden; background: #fff; padding: 4px; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+                                <a href="https://youtu.be/rDK9eccdvyA?si=LL6ptP07zOlh6u67" target="_blank">
+                                    <img src="images/webinar-qr.png" alt="TERRA Webinar QR Code" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+                                </a>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--gold-light); font-size: 0.85rem; margin: 0 0 0.25rem;">TERRA Webinar</h4>
+                                <p style="font-size: 0.72rem; color: var(--text-muted); margin: 0; line-height: 1.35;">
+                                    Students are welcome to scan this QR code or watch the <a href="https://youtu.be/rDK9eccdvyA?si=LL6ptP07zOlh6u67" target="_blank" style="color: var(--gold-light); text-decoration: underline; font-weight: 600;">TERRA Webinar</a> to see the platform and demonstrators in action!
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Project Milestones Panel -->
@@ -1230,6 +1331,35 @@
             views.forEach((view, idx) => {
                 view.style.display = (idx === index) ? 'block' : 'none';
             });
+        }
+
+        // Quiz grading function
+        function checkQuizAnswer(button, isCorrect, feedbackText) {
+            const parent = button.parentElement;
+            const feedbackEl = parent.nextElementSibling;
+            
+            // Reset and style options
+            parent.querySelectorAll('.quiz-option-btn').forEach(btn => {
+                btn.style.background = 'rgba(255, 255, 255, 0.05)';
+                btn.style.borderColor = 'var(--dark-border)';
+                btn.style.color = 'var(--text-muted)';
+            });
+            
+            // Highlight selected answer
+            if (isCorrect) {
+                button.style.background = 'rgba(40, 167, 69, 0.15)';
+                button.style.borderColor = '#28a745';
+                button.style.color = '#28a745';
+                feedbackEl.style.color = '#28a745';
+            } else {
+                button.style.background = 'rgba(220, 53, 69, 0.15)';
+                button.style.borderColor = '#dc3545';
+                button.style.color = '#dc3545';
+                feedbackEl.style.color = '#ff5f6d';
+            }
+            
+            feedbackEl.textContent = feedbackText;
+            feedbackEl.style.display = 'block';
         }
 
         // Comparison slider logic (Greece Station)
