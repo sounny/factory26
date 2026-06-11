@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="presentation.css">
     <style>
         .slide-bg-iss {
-            position: relative;
             background: linear-gradient(rgba(12, 12, 14, 0.82), rgba(12, 12, 14, 0.88)), url('images/earth-iss.png') no-repeat center center;
             background-size: cover;
             overflow: hidden;
@@ -44,6 +43,20 @@
         }
         .slide-image:hover {
             border-color: rgba(201, 168, 76, 0.4);
+        }
+        .phone-mockup {
+            max-width: 250px;
+            border-radius: 24px;
+            border: 4px solid var(--dark-border);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            margin: 1rem auto 0;
+            display: block;
+            background: #000;
+            transition: all var(--speed) var(--ease);
+        }
+        .phone-mockup:hover {
+            border-color: rgba(201, 168, 76, 0.5);
+            transform: scale(1.02);
         }
         .student-showcase-grid {
             display: grid;
@@ -105,7 +118,7 @@
             <section class="slide active slide-bg-iss" data-slide="0">
                 <div class="video-background">
                     <video autoplay loop muted playsinline poster="images/earth-iss.png">
-                        <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/3/36/Alexander_Gerst%27s_Earth_timelapses_%282017_reissue%29.webm/Alexander_Gerst%27s_Earth_timelapses_%282017_reissue%29.webm.720p.webm" type="video/webm">
+                        <source src="images/earth-timelapse.webm" type="video/webm">
                     </video>
                 </div>
                 <div class="slide-inner slide-center" style="position: relative; z-index: 2;">
@@ -159,12 +172,13 @@
                             <p class="slide-body" style="font-size: 1.15rem; font-weight: 500; color: var(--gold); margin-top: 0.5rem;">
                                 The Earth Observation Disconnect
                             </p>
-                            <p class="slide-body">
+                            <p class="slide-body" style="margin-bottom: 0.75rem;">
                                 We rely on the insights, but we remain disconnected from the data itself. Satellite information is currently locked behind technical barriers, high processing costs, and complex files.
                             </p>
-                            <p class="slide-body">
+                            <p class="slide-body" style="margin-bottom: 0.75rem;">
                                 The goal of the TERRA project is to close this gap, translating raw data into immediately actionable decisions for local administrators, coastal managers, and security agencies.
                             </p>
+                            <img src="images/eo-garden-chatbot.png" class="phone-mockup" alt="Soil Moisture Chatbot Mockup">
                         </div>
                     </div>
                 </div>
