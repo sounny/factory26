@@ -20,13 +20,15 @@
     position: absolute;
     inset: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 5rem var(--space-md) var(--space-lg);
+    justify-content: flex-start;
+    padding: 5rem var(--space-md) 4.5rem;
     opacity: 0;
     transform: translateX(60px);
     pointer-events: none;
     transition: opacity .5s var(--ease), transform .5s var(--ease);
+    overflow-y: auto;
 }
 
 .slide.active {
@@ -42,6 +44,7 @@
 .slide-inner {
     max-width: 1000px;
     width: 100%;
+    margin: auto 0;
 }
 
 .slide-center {

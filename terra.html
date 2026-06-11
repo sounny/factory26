@@ -30,7 +30,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.28; /* Subtle background visibility */
+            opacity: 0.42; /* Vibrant background visibility */
             mix-blend-mode: screen;
         }
         .slide-image {
@@ -203,6 +203,77 @@
             color: #fff;
             box-shadow: 0 2px 10px rgba(255, 95, 109, 0.3);
         }
+
+        /* ── LIGHTBOX MODAL ────────────────────────────────────────── */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(12, 12, 14, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: zoom-out;
+        }
+        .lightbox-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 85%;
+            border-radius: var(--radius);
+            border: 2px solid rgba(201, 168, 76, 0.3);
+            box-shadow: 0 10px 45px rgba(0,0,0,0.85);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .lightbox-modal.active .lightbox-content {
+            transform: scale(1);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--text-primary);
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color var(--speed) var(--ease);
+        }
+        .lightbox-close:hover {
+            color: var(--gold);
+        }
+        .lightbox-caption {
+            position: absolute;
+            bottom: 30px;
+            color: var(--gold-light);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-align: center;
+            background: rgba(12, 12, 14, 0.85);
+            padding: 8px 18px;
+            border-radius: 20px;
+            border: 1px solid var(--dark-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .clickable-image {
+            cursor: zoom-in;
+            transition: all var(--speed) var(--ease) !important;
+        }
+        .clickable-image:hover {
+            transform: scale(1.025);
+            border-color: rgba(201, 168, 76, 0.5) !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6) !important;
+        }
     </style>
 </head>
 <body>
@@ -227,13 +298,17 @@
             <section class="slide active slide-bg-iss" data-slide="0">
                 <div class="video-background">
                     <video autoplay loop muted playsinline poster="images/earth-iss.png">
-                        <source src="images/earth-timelapse.webm" type="video/webm">
+                        <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/3/36/Alexander_Gerst%27s_Earth_timelapses_%282017_reissue%29.webm/Alexander_Gerst%27s_Earth_timelapses_%282017_reissue%29.webm.720p.webm" type="video/webm">
                     </video>
                 </div>
                 <div class="slide-inner slide-center" style="position: relative; z-index: 2;">
                     <div class="slide-logos">
-                        <img src="images/terra-logo.png" alt="TERRA" class="slide-logo">
-                        <img src="images/eu-funded.png" alt="EU Funded" class="slide-logo">
+                        <a href="https://terra-horizon.eu/" target="_blank" rel="noopener">
+                            <img src="images/terra-logo.png" alt="TERRA" class="slide-logo" style="cursor: pointer;">
+                        </a>
+                        <a href="https://commission.europa.eu/funding-tenders/find-funding/eu-funding-programmes/horizon-europe_en" target="_blank" rel="noopener">
+                            <img src="images/eu-funded.png" alt="EU Funded" class="slide-logo" style="cursor: pointer;">
+                        </a>
                     </div>
                     <p class="slide-tag">Horizon Europe &middot; Grant No. 101189962 &middot; M18 Milestone</p>
                     <h1 class="slide-hero-title">
@@ -287,7 +362,12 @@
                             <p class="slide-body" style="margin-bottom: 0.75rem;">
                                 The goal of the TERRA project is to close this gap, translating raw data into immediately actionable decisions for local administrators, coastal managers, and security agencies.
                             </p>
-                            <img src="images/eo-garden-chatbot.png" class="phone-mockup" alt="Soil Moisture Chatbot Mockup">
+                            <div style="position: relative; max-width: 250px; margin: 1rem auto 0;">
+                                <img src="images/eo-garden-chatbot.png" class="phone-mockup clickable-image" alt="Soil Moisture Chatbot Mockup" onclick="openLightbox(this.src, 'Soil Moisture Chatbot Mockup - Fusing Sentinel-2 data to alert local gardeners')" style="margin: 0; display: block;">
+                                <span style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.75); color: var(--gold-light); font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(201,168,76,0.3); pointer-events: none; display: flex; align-items: center; gap: 0.3rem;">
+                                    <span>🔍 Click to Zoom</span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -314,21 +394,11 @@
                                 <li><strong>Free historical archives</strong> provide 6 to 8 years of baseline records, letting us trace environmental shifts</li>
                             </ul>
                         </div>
-                        <div class="eo-visual">
-                            <div class="eo-layer">
-                                <div class="eo-icon">&#128752;</div>
-                                <span>Satellite (700 km)</span>
-                            </div>
-                            <div class="eo-beam"></div>
-                            <div class="eo-layer">
-                                <div class="eo-icon">&#9729;&#65039;</div>
-                                <span>Atmosphere</span>
-                            </div>
-                            <div class="eo-beam"></div>
-                            <div class="eo-layer">
-                                <div class="eo-icon">&#127758;</div>
-                                <span>Earth Surface</span>
-                            </div>
+                        <div style="display: flex; justify-content: center; align-items: center; position: relative; width: 100%;">
+                            <img src="images/earth-leo.png" class="slide-image clickable-image" alt="Earth from Low Earth Orbit (LEO)" onclick="openLightbox(this.src, 'Earth from Low Earth Orbit (LEO) - The thin blue line of our atmosphere against deep space')" style="max-height: 310px; width: 100%; object-fit: cover; border-radius: var(--radius);">
+                            <span style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.75); color: var(--gold-light); font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(201,168,76,0.3); pointer-events: none; display: flex; align-items: center; gap: 0.3rem;">
+                                <span>🔍 Click to Zoom</span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -397,33 +467,39 @@
                         While the European Copernicus fleet provides a comprehensive, free public foundation, commercial New Space constellations add targeted temporal frequency and high spatial detail.
                     </p>
                     <div class="slide-grid-2">
-                        <div class="pilot-card" style="text-align: left; padding: 1.5rem;">
-                            <div style="height: 36px; margin-bottom: 0.75rem; display: flex; align-items: center;">
-                                <img src="images/planet-logo.svg" alt="Planet Logo" style="height: 28px;">
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div class="pilot-card" style="text-align: left; padding: 1.25rem;">
+                                <div style="height: 32px; margin-bottom: 0.5rem; display: flex; align-items: center;">
+                                    <img src="images/planet-logo.svg" alt="Planet Logo" style="height: 24px;">
+                                </div>
+                                <h3 style="color: var(--gold-light); font-size: 1.15rem; margin-bottom: 0.35rem;">Planet: Daily Global Coverage</h3>
+                                <p style="font-size: 0.8rem; margin-bottom: 0.75rem; line-height: 1.4;">
+                                    Utilizing a fleet of over 200 Dove CubeSats, Planet images the entire landmass of the Earth every single day.
+                                </p>
+                                <ul class="slide-list" style="font-size: 0.75rem; margin: 0;">
+                                    <li><strong>Temporal:</strong> Daily revisit rates to spot rapid changes</li>
+                                    <li><strong>Spatial:</strong> Approx. 3 meters per pixel</li>
+                                </ul>
                             </div>
-                            <h3 style="color: var(--gold-light); font-size: 1.25rem; margin-bottom: 0.5rem;">Planet: Daily Global Coverage</h3>
-                            <p style="font-size: 0.85rem; margin-bottom: 1rem; line-height: 1.5;">
-                                Utilizing a fleet of over 200 Dove CubeSats, Planet images the entire landmass of the Earth every single day.
-                            </p>
-                            <ul class="slide-list" style="font-size: 0.8rem; margin: 0;">
-                                <li><strong>Temporal strength:</strong> Daily revisit rates to spot rapid changes</li>
-                                <li><strong>Spatial resolution:</strong> Approximately 3 meters per pixel</li>
-                                <li><strong>Application:</strong> Deforestation detection, agricultural growth tracking</li>
-                            </ul>
+                            <div class="pilot-card" style="text-align: left; padding: 1.25rem;">
+                                <div style="height: 32px; margin-bottom: 0.5rem; display: flex; align-items: center;">
+                                    <img src="images/maxar-logo.svg" alt="Maxar Logo" style="height: 18px;">
+                                </div>
+                                <h3 style="color: var(--gold-light); font-size: 1.15rem; margin-bottom: 0.35rem;">Maxar: Ultra-High Resolution</h3>
+                                <p style="font-size: 0.8rem; margin-bottom: 0.75rem; line-height: 1.4;">
+                                    Deploying large, high-altitude optical satellites, Maxar captures detailed, task-specific imagery of target regions.
+                                </p>
+                                <ul class="slide-list" style="font-size: 0.75rem; margin: 0;">
+                                    <li><strong>Spatial:</strong> Extreme visual detail (down to 30 cm/pixel)</li>
+                                    <li><strong>Application:</strong> Damage mapping, infrastructure, defense</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="pilot-card" style="text-align: left; padding: 1.5rem;">
-                            <div style="height: 36px; margin-bottom: 0.75rem; display: flex; align-items: center;">
-                                <img src="images/maxar-logo.svg" alt="Maxar Logo" style="height: 22px;">
-                            </div>
-                            <h3 style="color: var(--gold-light); font-size: 1.25rem; margin-bottom: 0.5rem;">Maxar: Ultra-High Resolution</h3>
-                            <p style="font-size: 0.85rem; margin-bottom: 1rem; line-height: 1.5;">
-                                Deploying large, high-altitude optical satellites, Maxar captures detailed, task-specific imagery of target regions.
-                            </p>
-                            <ul class="slide-list" style="font-size: 0.8rem; margin: 0;">
-                                <li><strong>Spatial strength:</strong> Extreme visual detail</li>
-                                <li><strong>Spatial resolution:</strong> Up to 30 centimeters per pixel</li>
-                                <li><strong>Application:</strong> Infrastructure monitoring, damage mapping, defense</li>
-                            </ul>
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; width: 100%;">
+                            <img src="images/resolution-comparison.png" class="slide-image clickable-image" alt="Resolution Comparison: 3m vs 30cm" onclick="openLightbox(this.src, 'Spatial Resolution Comparison - Planet 3m (left) vs Maxar 30cm (right)')" style="max-height: 340px; width: 100%; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--dark-border);">
+                            <span style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.75); color: var(--gold-light); font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(201,168,76,0.3); pointer-events: none; display: flex; align-items: center; gap: 0.3rem;">
+                                <span>🔍 Click to Zoom</span>
+                            </span>
                         </div>
                     </div>
                     <p class="slide-note">Fusing the free, systematic Sentinel data with commercial targeted imagery yields complete environmental intelligence.</p>
@@ -566,6 +642,12 @@
                                 <li><strong>Vessel Indicators:</strong> Flags identifying ships that turned off transponders</li>
                                 <li><strong>Erosion Forecasts:</strong> 5-year predictions of shoreline retreat</li>
                             </ul>
+                            <div style="position: relative; margin-top: 1rem; width: 100%;">
+                                <img src="images/intelligent-platform.jpg" class="slide-image clickable-image" alt="TERRA Intelligent Platform" onclick="openLightbox(this.src, 'TERRA: An Intelligent Platform For Integrating Climate Services')" style="max-height: 180px; width: 100%; object-fit: cover;">
+                                <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.75); color: var(--gold-light); font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(201,168,76,0.3); pointer-events: none; display: flex; align-items: center; gap: 0.3rem;">
+                                    <span>🔍 Click to Zoom</span>
+                                </span>
+                            </div>
                         </div>
                         <div class="terra-flow">
                             <div class="flow-step">
@@ -595,54 +677,62 @@
                 <div class="slide-inner">
                     <p class="slide-tag">Real Stories</p>
                     <h2>Three Pilots Across Europe</h2>
-                    <div class="slide-grid-3">
-                        <div class="pilot-card pilot-detailed">
-                            <div class="pilot-flag" style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                                <svg viewBox="0 0 100 100" width="30" height="30" style="border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.3); display: block;">
-                                    <rect width="100" height="100" fill="#0D5EAF"/>
-                                    <rect y="11.1" width="100" height="11.1" fill="#FFFFFF"/>
-                                    <rect y="33.3" width="100" height="11.1" fill="#FFFFFF"/>
-                                    <rect y="55.6" width="100" height="11.1" fill="#FFFFFF"/>
-                                    <rect y="77.8" width="100" height="11.1" fill="#FFFFFF"/>
-                                    <rect width="55.6" height="55.6" fill="#0D5EAF"/>
-                                    <rect x="22.2" width="11.1" height="55.6" fill="#FFFFFF"/>
-                                    <rect y="22.2" width="55.6" height="11.1" fill="#FFFFFF"/>
-                                </svg>
+                    <div class="slide-grid-2" style="align-items: center;">
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <!-- Greece Card -->
+                            <div class="pilot-card pilot-detailed" style="padding: 0.85rem; text-align: left;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+                                    <svg viewBox="0 0 100 100" width="22" height="22" style="border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.3); display: block;">
+                                        <rect width="100" height="100" fill="#0D5EAF"/>
+                                        <rect y="11.1" width="100" height="11.1" fill="#FFFFFF"/>
+                                        <rect y="33.3" width="100" height="11.1" fill="#FFFFFF"/>
+                                        <rect y="55.6" width="100" height="11.1" fill="#FFFFFF"/>
+                                        <rect y="77.8" width="100" height="11.1" fill="#FFFFFF"/>
+                                        <rect width="55.6" height="55.6" fill="#0D5EAF"/>
+                                        <rect x="22.2" width="11.1" height="55.6" fill="#FFFFFF"/>
+                                        <rect y="22.2" width="55.6" height="11.1" fill="#FFFFFF"/>
+                                    </svg>
+                                    <h3 style="margin: 0; font-size: 0.95rem;">Greece: Water Pollution</h3>
+                                </div>
+                                <p style="font-size: 0.75rem; line-height: 1.4; margin: 0;">
+                                    Led by University of Thessaly (iPRISM Group). Fuses Sentinel-2/3 with USV drone telemetry to predict agricultural runoff plumes 48 hours in advance in coastal Fthiotida. <a href="https://terra-horizon.eu/terra-demonstrator-1-sperchios/" target="_blank" style="color: var(--gold-light); text-decoration: underline;">Explore Demonstrator</a>
+                                </p>
                             </div>
-                            <h3>Greece: Water Pollution</h3>
-                            <p class="pilot-location">Sperchios River &amp; Maliakos Gulf, Fthiotida</p>
-                            <p style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 0.5rem;"><strong>The decision:</strong> Close Beach X in 48 hours; pollution plume arriving. Fuses Sentinel-2/3 with USV drone telemetry to compute a Predictive Water Quality Index. Fthiotida pilot affects 550,000 residents.</p>
-                            <div style="font-size: 0.7rem; color: var(--text-dim); margin-top: 0.25rem;"><strong>Directive:</strong> Zero Pollution Action Plan, Water Framework Directive</div>
-                            <div class="pilot-tech">Sentinel-2 + Sentinel-3 &middot; USV IoT Sensors &middot; LSTM AI &middot; UTH Lead</div>
+                            <!-- Poland Card -->
+                            <div class="pilot-card pilot-detailed" style="padding: 0.85rem; text-align: left;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+                                    <svg viewBox="0 0 100 100" width="22" height="22" style="border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); display: block;">
+                                        <rect width="100" height="50" fill="#FFFFFF"/>
+                                        <rect y="50" width="100" height="50" fill="#DC143C"/>
+                                    </svg>
+                                    <h3 style="margin: 0; font-size: 0.95rem;">Poland: Maritime Security</h3>
+                                </div>
+                                <p style="font-size: 0.75rem; line-height: 1.4; margin: 0;">
+                                    Led by Blue Dot Solutions. Fuses Sentinel-1 SAR with AIS logs to track "dark vessels" disabling transponders in the Port of Gdansk, monitoring ship traffic and water quality.
+                                </p>
+                            </div>
+                            <!-- Scotland Card -->
+                            <div class="pilot-card pilot-detailed" style="padding: 0.85rem; text-align: left;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+                                    <svg viewBox="0 0 100 100" width="22" height="22" style="border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.3); display: block;">
+                                        <rect width="100" height="100" fill="#00247D"/>
+                                        <path d="M0,0 L100,100 M100,0 L0,100" stroke="#FFFFFF" stroke-width="12"/>
+                                        <path d="M0,0 L100,100 M100,0 L0,100" stroke="#CF142B" stroke-width="4"/>
+                                        <path d="M50,0 L50,100 M0,50 L100,50" stroke="#FFFFFF" stroke-width="20"/>
+                                        <path d="M50,0 L50,100 M0,50 L100,50" stroke="#CF142B" stroke-width="12"/>
+                                    </svg>
+                                    <h3 style="margin: 0; font-size: 0.95rem;">Scotland: Coastal Erosion</h3>
+                                </div>
+                                <p style="font-size: 0.75rem; line-height: 1.4; margin: 0;">
+                                    Uses Sentinel-1/2 optical and radar imagery to run U-Net/LSTM models to extract shoreline vegetation lines, predicting retreat to protect coastal road infrastructure.
+                                </p>
+                            </div>
                         </div>
-                        <div class="pilot-card pilot-detailed">
-                            <div class="pilot-flag" style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                                <svg viewBox="0 0 100 100" width="30" height="30" style="border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); display: block;">
-                                    <rect width="100" height="50" fill="#FFFFFF"/>
-                                    <rect y="50" width="100" height="50" fill="#DC143C"/>
-                                </svg>
-                            </div>
-                            <h3>Poland: Maritime Security</h3>
-                            <p class="pilot-location">Port of Gdansk, Baltic Sea</p>
-                            <p style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 0.5rem;"><strong>The decision:</strong> Vessel at 54.3 degrees North has gone dark; dispatch patrol. Fuses Sentinel-1 radar with AIS tracking logs to flag "dark vessels" that disable transponders, plus tracks 6-8 year port water trends.</p>
-                            <div style="font-size: 0.7rem; color: var(--text-dim); margin-top: 0.25rem;"><strong>Directive:</strong> EU Maritime Security Strategy, Marine Strategy Framework Directive</div>
-                            <div class="pilot-tech">Sentinel-1 SAR &middot; SAR-AIS Fusion AI &middot; BDS Lead</div>
-                        </div>
-                        <div class="pilot-card pilot-detailed">
-                            <div class="pilot-flag" style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                                <svg viewBox="0 0 100 100" width="30" height="30" style="border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.3); display: block;">
-                                    <rect width="100" height="100" fill="#00247D"/>
-                                    <path d="M0,0 L100,100 M100,0 L0,100" stroke="#FFFFFF" stroke-width="12"/>
-                                    <path d="M0,0 L100,100 M100,0 L0,100" stroke="#CF142B" stroke-width="4"/>
-                                    <path d="M50,0 L50,100 M0,50 L100,50" stroke="#FFFFFF" stroke-width="20"/>
-                                    <path d="M50,0 L50,100 M0,50 L100,50" stroke="#CF142B" stroke-width="12"/>
-                                </svg>
-                            </div>
-                            <h3>Scotland: Coastal Erosion</h3>
-                            <p class="pilot-location">Scottish Coastline, UK</p>
-                            <p style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 0.5rem;"><strong>The decision:</strong> This 200m stretch will retreat 3 metres by 2028; relocate infrastructure. Fuses Sentinel-1/2 optical and radar imagery to run U-Net and Mamba-LSTM models for extracting the vegetation line.</p>
-                            <div style="font-size: 0.7rem; color: var(--text-dim); margin-top: 0.25rem;"><strong>Directive:</strong> EU Adaptation Strategy, Nature Restoration Law</div>
-                            <div class="pilot-tech">Sentinel-1 + 2 &middot; U-Net + Mamba-LSTM &middot; VHSet &middot; UGLA Lead</div>
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; width: 100%;">
+                            <img src="images/three-pilots.png" class="slide-image clickable-image" alt="TERRA Pilot Visualizations" onclick="openLightbox(this.src, 'TERRA Pilot Visualizations - Greece water runoff, Poland radar dark vessels, Scotland shoreline erosion')" style="max-height: 440px; width: 100%; object-fit: contain; border-radius: var(--radius); border: 1px solid var(--dark-border);">
+                            <span style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.75); color: var(--gold-light); font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(201,168,76,0.3); pointer-events: none; display: flex; align-items: center; gap: 0.3rem;">
+                                <span>🔍 Click to Zoom</span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -685,30 +775,38 @@
                     <p class="slide-body" style="margin-bottom: 0.5rem;">
                         ISU students applied the TERRA concept of "Decisions, Not Pixels" to build operational prototypes in just two weeks, translating raw satellite records into intuitive web applications.
                     </p>
-                    <div class="student-showcase-grid">
-                        <div class="student-project-card">
-                            <div class="student-project-title">🚢 LogiRhein Live</div>
-                            <p class="student-project-desc">
-                                Fuses Rhine water level gauges with historical models to predict shipping bottlenecks 2 to 4 weeks in advance, suggesting multimodal cargo rerouting via an AI assistant.
-                            </p>
+                    <div class="slide-grid-2" style="align-items: center; margin-top: 1rem;">
+                        <div class="student-showcase-grid" style="grid-template-columns: 1fr; margin-top: 0; gap: 0.75rem;">
+                            <div class="student-project-card">
+                                <div class="student-project-title">🚢 LogiRhein Live</div>
+                                <p class="student-project-desc">
+                                    Fuses Rhine water level gauges with historical models to predict shipping bottlenecks 2 to 4 weeks in advance, suggesting multimodal cargo rerouting via an AI assistant.
+                                </p>
+                            </div>
+                            <div class="student-project-card">
+                                <div class="student-project-title">🌍 ABIL</div>
+                                <p class="student-project-desc">
+                                    Maps corporate assets to satellite observations, converting raw Sentinel-2 and 3 thermal and spectral records into a real-time ESG compliance score per facility.
+                                </p>
+                            </div>
+                            <div class="student-project-card">
+                                <div class="student-project-title">🛒 GiveMeSpace</div>
+                                <p class="student-project-desc">
+                                    Builds a centralized, secure space industry marketplace that connects satellite data providers directly with non-expert enterprise customers.
+                                </p>
+                            </div>
+                            <div class="student-project-card">
+                                <div class="student-project-title">🌊 OceanSentinel</div>
+                                <p class="student-project-desc">
+                                    Detects illegal maritime activities by running AI-powered anomaly detection on Sentinel-1 radar, sending automated Telegram alerts to coast guard patrols.
+                                </p>
+                            </div>
                         </div>
-                        <div class="student-project-card">
-                            <div class="student-project-title">🌍 ABIL</div>
-                            <p class="student-project-desc">
-                                Maps corporate assets to satellite observations, converting raw Sentinel-2 and 3 thermal and spectral records into a real-time ESG compliance score per facility.
-                            </p>
-                        </div>
-                        <div class="student-project-card">
-                            <div class="student-project-title">🛒 GiveMeSpace</div>
-                            <p class="student-project-desc">
-                                Builds a centralized, secure space industry marketplace that connects satellite data providers directly with non-expert enterprise customers.
-                            </p>
-                        </div>
-                        <div class="student-project-card">
-                            <div class="student-project-title">🌊 OceanSentinel</div>
-                            <p class="student-project-desc">
-                                Detects illegal maritime activities by running AI-powered anomaly detection on Sentinel-1 radar, sending automated Telegram alerts to coast guard patrols.
-                            </p>
+                        <div style="position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <img src="images/student-presentation.png" class="slide-image clickable-image" alt="Research Presentation" onclick="openLightbox(this.src, 'University of Thessaly Research Presentation - Deep learning models for water pollution forecasting (iPRISM Group)')" style="max-height: 320px; width: 100%; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--dark-border);">
+                            <span style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.75); color: var(--gold-light); font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(201,168,76,0.3); pointer-events: none; display: flex; align-items: center; gap: 0.3rem;">
+                                <span>🔍 Click to Zoom</span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -756,9 +854,36 @@
                     
                     <!-- Tab Navigation -->
                     <div class="station-tabs" style="display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 1.5rem;">
-                        <button class="station-tab-btn active" onclick="switchStation(0)">Station 1: Grèce 🇬🇷</button>
-                        <button class="station-tab-btn" onclick="switchStation(1)">Station 2: Pologne 🇵🇱</button>
-                        <button class="station-tab-btn" onclick="switchStation(2)">Station 3: Écosse 🇬🇧</button>
+                        <button class="station-tab-btn active" onclick="switchStation(0)" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                            <svg viewBox="0 0 100 100" width="18" height="18" style="border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.3); display: block;">
+                                <rect width="100" height="100" fill="#0D5EAF"/>
+                                <rect y="11.1" width="100" height="11.1" fill="#FFFFFF"/>
+                                <rect y="33.3" width="100" height="11.1" fill="#FFFFFF"/>
+                                <rect y="55.6" width="100" height="11.1" fill="#FFFFFF"/>
+                                <rect y="77.8" width="100" height="11.1" fill="#FFFFFF"/>
+                                <rect width="55.6" height="55.6" fill="#0D5EAF"/>
+                                <rect x="22.2" width="11.1" height="55.6" fill="#FFFFFF"/>
+                                <rect y="22.2" width="55.6" height="11.1" fill="#FFFFFF"/>
+                            </svg>
+                            Station 1: Grèce
+                        </button>
+                        <button class="station-tab-btn" onclick="switchStation(1)" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                            <svg viewBox="0 0 100 100" width="18" height="18" style="border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); display: block;">
+                                <rect width="100" height="50" fill="#FFFFFF"/>
+                                <rect y="50" width="100" height="50" fill="#DC143C"/>
+                            </svg>
+                            Station 2: Pologne
+                        </button>
+                        <button class="station-tab-btn" onclick="switchStation(2)" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                            <svg viewBox="0 0 100 100" width="18" height="18" style="border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.3); display: block;">
+                                <rect width="100" height="100" fill="#00247D"/>
+                                <path d="M0,0 L100,100 M100,0 L0,100" stroke="#FFFFFF" stroke-width="12"/>
+                                <path d="M0,0 L100,100 M100,0 L0,100" stroke="#CF142B" stroke-width="4"/>
+                                <path d="M50,0 L50,100 M0,50 L100,50" stroke="#FFFFFF" stroke-width="20"/>
+                                <path d="M50,0 L50,100 M0,50 L100,50" stroke="#CF142B" stroke-width="12"/>
+                            </svg>
+                            Station 3: Écosse
+                        </button>
                     </div>
 
                     <!-- Station Sandbox Views -->
@@ -778,8 +903,9 @@
                                             Drag the slider on the map to compare the <strong>True Color S-2</strong> image with the <strong>Water Quality Index (WQI)</strong> showing the nitrate pollution plume in orange.
                                         </p>
                                     </div>
-                                    <div class="pilot-tech" style="margin-top: 0; font-size: 0.75rem;">
-                                        Sentinel-2 + Sentinel-3 &middot; Fuses WQI &middot; UTH Lead
+                                    <div class="pilot-tech" style="margin-top: 0; font-size: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+                                        <span>Sentinel-2 + Sentinel-3 &middot; Fuses WQI &middot; UTH Lead</span>
+                                        <a href="https://terra-horizon.eu/terra-demonstrator-1-sperchios/" target="_blank" style="color: var(--gold-light); text-decoration: underline; font-weight: 600;">Explore Live Demonstrator</a>
                                     </div>
                                 </div>
                                 <div style="display: flex; flex-direction: column; align-items: center;">
@@ -941,28 +1067,87 @@
 
                     </div>
                     
-                    <p class="slide-note">Clicking interactive buttons runs real-time HTML/JS sandbox animations modeling actual pilot logic.</p>
+                    <p class="slide-note">Clicking interactive buttons runs real-time HTML/JS sandbox animations modeling actual pilot logic. Explore the full, live demonstrators on the next slide or visit <a href="https://terra-horizon.eu" target="_blank" style="color: var(--gold-light); text-decoration: underline; font-weight: 600;">terra-horizon.eu</a> to learn more.</p>
                 </div>
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 15: CLOSING                         -->
+            <!-- SLIDE 15: LIVE PORTAL DEMO                 -->
             <!-- ══════════════════════════════════════════ -->
             <section class="slide" data-slide="14">
-                <div class="slide-inner slide-center">
+                <div class="slide-inner" style="max-width: 1200px; height: calc(100vh - 160px); display: flex; flex-direction: column;">
+                    <p class="slide-tag">Interactive Demonstration</p>
+                    <h2>Live Platform: terra-horizon.eu</h2>
+                    <p class="slide-body" style="font-size: 0.9rem; margin-bottom: 0.75rem;">
+                        The TERRA platform combines Earth Observation, AI, and data-driven analytics for real-world environmental monitoring (water quality, coastal management, and climate hazards). Explore the live portal below or visit <a href="https://terra-horizon.eu" target="_blank" style="color: var(--gold-light); text-decoration: underline; font-weight: 600;">terra-horizon.eu</a> to run the demonstrators and learn more.
+                    </p>
+                    <div style="flex: 1; min-height: 380px; border-radius: var(--radius); border: 2px solid var(--dark-border); overflow: hidden; background: #0c0c0e; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); position: relative;">
+                        <iframe src="https://terra-horizon.eu/" style="width: 100%; height: 100%; border: none; background: #0c0c0e;" allow="fullscreen"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ══════════════════════════════════════════ -->
+            <!-- SLIDE 16: CLOSING                         -->
+            <!-- ══════════════════════════════════════════ -->
+            <section class="slide" data-slide="15">
+                <div class="slide-inner slide-center" style="max-width: 1000px;">
                     <div class="slide-logos">
-                        <img src="images/terra-logo.png" alt="TERRA" class="slide-logo">
-                        <img src="images/isu-logo.png" alt="ISU" class="slide-logo slide-logo-invert">
-                        <img src="images/eu-funded.png" alt="EU Funded" class="slide-logo">
+                        <a href="https://terra-horizon.eu/" target="_blank" rel="noopener">
+                            <img src="images/terra-logo.png" alt="TERRA" class="slide-logo" style="cursor: pointer;">
+                        </a>
+                        <a href="https://www.isunet.edu/" target="_blank" rel="noopener">
+                            <img src="images/isu-logo.png" alt="ISU" class="slide-logo slide-logo-invert" style="cursor: pointer;">
+                        </a>
+                        <a href="https://commission.europa.eu/funding-tenders/find-funding/eu-funding-programmes/horizon-europe_en" target="_blank" rel="noopener">
+                            <img src="images/eu-funded.png" alt="EU Funded" class="slide-logo" style="cursor: pointer;">
+                        </a>
                     </div>
                     <p class="slide-tag">Thank You</p>
                     <h2>Decisions, Not Pixels.</h2>
                     <p class="slide-body" style="max-width: 560px; margin: 0 auto;">
                         The new frontier of Earth Observation is not about better cameras or more satellites. It is about turning petabytes of free public data into the specific decisions that protect water, coasts, and communities. That is what TERRA builds.
+                      </p>
+                    <p class="slide-body" style="max-width: 720px; margin: var(--space-sm) auto 0; font-size: .85rem; line-height: 1.6; color: var(--text-muted);">
+                        <strong>Consortium:</strong> 9 partners across 7 countries.<br>
+                        <strong>Project Details:</strong> Grant No. 101189962 &middot; Duration: 3 Years (1 Jan 2025 to 31 Dec 2027) &middot; Funding: &euro;1,999,970.45.
                     </p>
-                    <p class="slide-body" style="max-width: 540px; margin: var(--space-sm) auto 0; font-size: .85rem;">
-                        9 partners across 7 countries: University of Thessaly, inCITES, MEEO, Blue Dot Solutions, University of Glasgow, etc. Grant No. 101189962. Jan 2025 to Dec 2027.
-                    </p>
+
+                    <!-- Consortium Partners Grid Image -->
+                    <div style="position: relative; max-width: 600px; margin: 1.25rem auto 1.25rem; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--dark-border); background: #1a3330; padding: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);">
+                        <img src="images/partners.png" class="clickable-image" alt="TERRA Consortium Partners" onclick="openLightbox(this.src, 'TERRA Consortium Partners - 9 institutions across 7 European countries')" style="max-height: 220px; width: 100%; object-fit: contain; display: block; border-radius: calc(var(--radius) - 4px);">
+                        <span style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.75); color: var(--gold-light); font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(201,168,76,0.3); pointer-events: none; display: flex; align-items: center; gap: 0.3rem;">
+                            <span>🔍 Click to Zoom</span>
+                        </span>
+                    </div>
+
+                    <!-- Project Milestones Panel -->
+                    <div class="pilot-card" style="max-width: 720px; margin: 1.5rem auto var(--space-md); text-align: left; padding: 1.25rem; background: rgba(20, 20, 25, 0.4); border-color: rgba(201, 168, 76, 0.25);">
+                        <h3 style="color: var(--gold-light); font-size: 1rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--dark-border); padding-bottom: 0.35rem;">
+                            Latest Project Milestones (June 2026)
+                        </h3>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                            <div>
+                                <strong style="color: var(--gold-light); font-size: 0.8rem; display: block; margin-bottom: 0.15rem;">April 2026</strong>
+                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0; line-height: 1.4;">
+                                    6th Project Board Meeting online. Reviewed demonstrator progress and platform integration.
+                                </p>
+                            </div>
+                            <div style="border-left: 1px solid var(--dark-border); padding-left: 1rem;">
+                                <strong style="color: var(--gold-light); font-size: 0.8rem; display: block; margin-bottom: 0.15rem;">May 2026</strong>
+                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0; line-height: 1.4;">
+                                    AI Pervasive Systems (iPRISM) lecture at UTH on AI-driven water pollution forecasting.
+                                </p>
+                            </div>
+                            <div style="border-left: 1px solid var(--dark-border); padding-left: 1rem;">
+                                <strong style="color: var(--gold-light); font-size: 0.8rem; display: block; margin-bottom: 0.15rem;">June 2026</strong>
+                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0; line-height: 1.4;">
+                                    TERRA Live Showcase at Factory 2026 Workshop, hosted at ISU Strasbourg.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="closing-links">
                         <a href="https://terra-horizon.eu" target="_blank" class="closing-link">
                             <span class="closing-icon">&#127760;</span>
@@ -992,14 +1177,41 @@
             <div class="slide-progress">
                 <span class="slide-current">1</span>
                 <span class="slide-sep">/</span>
-                <span class="slide-total">15</span>
+                <span class="slide-total">16</span>
             </div>
             <button class="slide-btn" id="next-btn" aria-label="Next slide">&rarr;</button>
         </div>
     </main>
 
+    <!-- Image Zoom Lightbox Container -->
+    <div id="image-lightbox" class="lightbox-modal" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Zoomed View">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
     <script src="slides.js?v=2"></script>
     <script>
+        // Lightbox Open/Close functions
+        function openLightbox(src, captionText) {
+            const lightbox = document.getElementById('image-lightbox');
+            const img = document.getElementById('lightbox-img');
+            const caption = document.getElementById('lightbox-caption');
+            if (lightbox && img) {
+                img.src = src;
+                if (caption) caption.textContent = captionText;
+                lightbox.classList.add('active');
+            }
+        }
+
+        // Lightbox Close function
+        function closeLightbox() {
+            const lightbox = document.getElementById('image-lightbox');
+            if (lightbox) {
+                lightbox.classList.remove('active');
+            }
+        }
+
         // Tab switching logic for Slide 14
         function switchStation(index) {
             const buttons = document.querySelectorAll('.station-tab-btn');
