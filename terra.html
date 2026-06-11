@@ -550,34 +550,38 @@
                     <p class="slide-body" style="margin-bottom: var(--space-md);">
                         Earth Observation data is structured into processing levels, transforming raw instrument measurements into calibrated, atmospherically-corrected observations, and finally into environmental models.
                     </p>
-                    <div class="slide-grid-2">
-                        <div>
-                            <div class="pilot-card" style="text-align: left; padding: 1rem; margin-bottom: 0.75rem; border-left: 3px solid var(--gold);">
-                                <h4 style="color: var(--gold-light); margin-bottom: 0.25rem;">Level 0 &amp; Level 1: Raw &amp; Top of Atmosphere</h4>
-                                <p style="font-size: 0.8rem; line-height: 1.5; color: var(--text-muted);">
+                    <div class="slide-grid-2" style="align-items: center; margin-top: 1rem;">
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <div class="pilot-card" style="text-align: left; padding: 0.85rem; border-left: 3px solid var(--gold);">
+                                <h4 style="color: var(--gold-light); margin-bottom: 0.2rem; font-size: 0.9rem;">Level 0 &amp; Level 1: Raw &amp; Top of Atmosphere</h4>
+                                <p style="font-size: 0.75rem; line-height: 1.4; color: var(--text-muted); margin: 0;">
                                     Level 0 is raw sensor voltage and raw telemetry. Level 1 is geolocated and calibrated (Top of Atmosphere reflectance) but still contains atmospheric distortion and cloud cover.
                                 </p>
                             </div>
-                            <div class="pilot-card" style="text-align: left; padding: 1rem; border-left: 3px solid var(--accent-blue);">
-                                <h4 style="color: var(--accent-blue); margin-bottom: 0.25rem;">Level 2: Surface Reflectance</h4>
-                                <p style="font-size: 0.8rem; line-height: 1.5; color: var(--text-muted);">
+                            <div class="pilot-card" style="text-align: left; padding: 0.85rem; border-left: 3px solid var(--accent-blue);">
+                                <h4 style="color: var(--accent-blue); margin-bottom: 0.2rem; font-size: 0.9rem;">Level 2: Surface Reflectance</h4>
+                                <p style="font-size: 0.75rem; line-height: 1.4; color: var(--text-muted); margin: 0;">
                                     Atmospherically corrected to represent what a sensor would see on the ground (Bottom of Atmosphere reflectance). This is the clean imagery used by researchers for land classification and vegetation analysis.
                                 </p>
                             </div>
-                        </div>
-                        <div>
-                            <div class="pilot-card" style="text-align: left; padding: 1rem; margin-bottom: 0.75rem; border-left: 3px solid var(--gold-light);">
-                                <h4 style="color: var(--gold-light); margin-bottom: 0.25rem;">Level 3: Geophysical Variables</h4>
-                                <p style="font-size: 0.8rem; line-height: 1.5; color: var(--text-muted);">
+                            <div class="pilot-card" style="text-align: left; padding: 0.85rem; border-left: 3px solid var(--gold-light);">
+                                <h4 style="color: var(--gold-light); margin-bottom: 0.2rem; font-size: 0.9rem;">Level 3: Geophysical Variables</h4>
+                                <p style="font-size: 0.75rem; line-height: 1.4; color: var(--text-muted); margin: 0;">
                                     Processed indices and variables derived from Level 2, such as NDVI (vegetation index), NDWI (water index), or Chlorophyll-A concentrations in water.
                                 </p>
                             </div>
-                            <div class="pilot-card" style="text-align: left; padding: 1rem; border-left: 3px solid var(--gold-bright);">
-                                <h4 style="color: var(--gold-bright); margin-bottom: 0.25rem;">Level 4: Decision Intelligence (The Last Mile)</h4>
-                                <p style="font-size: 0.8rem; line-height: 1.5; color: var(--text-muted);">
+                            <div class="pilot-card" style="text-align: left; padding: 0.85rem; border-left: 3px solid var(--gold-bright);">
+                                <h4 style="color: var(--gold-bright); margin-bottom: 0.2rem; font-size: 0.9rem;">Level 4: Decision Intelligence (The Last Mile)</h4>
+                                <p style="font-size: 0.75rem; line-height: 1.4; color: var(--text-muted); margin: 0;">
                                     The ultimate tier. Fusing Level 3 indicators with historical models and AI to output actionable decisions, e.g., "Close this beach due to an active pollution plume."
                                 </p>
                             </div>
+                        </div>
+                        <div style="position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <img src="images/processing-levels.png" class="slide-image clickable-image" alt="Data Processing Levels Diagram" onclick="openLightbox(this.src, 'Data Processing Levels - Raw sensor telemetry (L0) to geolocated Top of Atmosphere (L1), Bottom of Atmosphere Surface Reflectance (L2), Geophysical Indices (L3), and Decision Intelligence (L4)')" style="max-height: 340px; width: 100%; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--dark-border);">
+                            <span style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.75); color: var(--gold-light); font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(201,168,76,0.3); pointer-events: none; display: flex; align-items: center; gap: 0.3rem;">
+                                <span>🔍 Click to Zoom</span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -589,9 +593,9 @@
             <section class="slide" data-slide="7">
                 <div class="slide-inner slide-center">
                     <p class="slide-tag">The Value Gap</p>
-                    <h2>25 Terabytes per Day. Zero Decisions.</h2>
-                    <p class="slide-body" style="max-width: 640px; margin: 0 auto var(--space-md);">
-                        Copernicus generates over <strong>25 TB of data every day</strong>. But a pixel is not a decision. The vast majority of this data remains functionally inaccessible to the civil servants, coastal planners, and coast guard operators who urgently need it.
+                    <h2>100+ Terabytes per Day. Zero Decisions.</h2>
+                    <p class="slide-body" style="max-width: 760px; margin: 0 auto var(--space-md);">
+                        Every single day, public and commercial satellite fleets generate over <strong>100 TB of raw Earth Observation data</strong> (Copernicus: ~30 TB; Planet: ~20 TB; Maxar: up to 60 TB; Landsat: ~2 TB). But a pixel is not a decision. The vast majority of this data remains functionally locked away from the public administrators, coastal managers, and security agencies who urgently need it.
                     </p>
                     <div class="gap-grid">
                         <div class="gap-card">
