@@ -94,6 +94,115 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ── SATELLITE HOVER OVERLAYS ──────────────────────────────── */
+        .sentinel-hover-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .sentinel-image-overlay {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            background: rgba(12, 12, 14, 0.96);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.35s var(--speed) var(--ease), transform 0.35s var(--speed) var(--ease);
+            transform: scale(1.03);
+            pointer-events: none;
+            z-index: 5;
+            padding: 1.25rem;
+        }
+        .sentinel-hover-card:hover .sentinel-image-overlay {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .sentinel-image-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+        }
+        .sentinel-overlay-label {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(12, 12, 14, 0.9);
+            color: var(--gold-light);
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 4px;
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        }
+
+        /* ── SANDBOX DEMO STYLES ────────────────────────────────────── */
+        .station-tab-btn {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            color: var(--text-muted);
+            padding: 0.6rem 1.25rem;
+            border-radius: var(--radius-sm);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--speed) var(--ease);
+        }
+        .station-tab-btn:hover {
+            border-color: rgba(201, 168, 76, 0.4);
+            color: var(--gold-light);
+        }
+        .station-tab-btn.active {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            border-color: var(--gold);
+            color: #0c0c0e;
+            box-shadow: 0 4px 15px rgba(201, 168, 76, 0.25);
+        }
+        .compare-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+        }
+        .radar-blip {
+            animation: blip-glow 2s infinite;
+        }
+        @keyframes blip-glow {
+            0% { transform: translate(-50%,-50%) scale(0.9); opacity: 0.8; }
+            50% { transform: translate(-50%,-50%) scale(1.2); opacity: 1; box-shadow: 0 0 14px #1bfa5c; }
+            100% { transform: translate(-50%,-50%) scale(0.9); opacity: 0.8; }
+        }
+        @keyframes radar-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .year-btn {
+            background: #121214;
+            border: 1px solid var(--dark-border);
+            color: var(--text-muted);
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--speed) var(--ease);
+            font-family: 'Outfit', sans-serif;
+        }
+        .year-btn:hover {
+            border-color: rgba(255, 95, 109, 0.4);
+            color: #ff5f6d;
+        }
+        .year-btn.active {
+            background: #ff5f6d;
+            border-color: #ff5f6d;
+            color: #fff;
+            box-shadow: 0 2px 10px rgba(255, 95, 109, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -230,23 +339,44 @@
             <!-- ══════════════════════════════════════════ -->
             <section class="slide" data-slide="3">
                 <div class="slide-inner">
-                    <p class="slide-tag">Europe's Eyes in the Sky</p>
-                    <h2>Copernicus &amp; the Sentinels</h2>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-sm);">
+                        <div>
+                            <p class="slide-tag">Europe's Eyes in the Sky</p>
+                            <h2>Copernicus &amp; the Sentinels</h2>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: center; background: rgba(255,255,255,0.03); padding: 0.4rem 1rem; border-radius: 8px; border: 1px solid var(--dark-border);">
+                            <img src="images/copernicus-logo.svg" alt="Copernicus Logo" style="height: 28px;">
+                            <div style="width: 1px; height: 20px; background: var(--dark-border);"></div>
+                            <img src="images/esa-logo.svg" alt="ESA Logo" style="height: 22px; filter: brightness(0) invert(1); opacity: 0.85;">
+                        </div>
+                    </div>
                     <p class="slide-body" style="margin-bottom: var(--space-md);">
                         <strong>Copernicus</strong> is the European Union's Earth Observation programme, the largest in the world. It operates a fleet of <strong>Sentinel satellites</strong>, each designed for a different mission. The data has been available for 6-8 years, giving us powerful historical baselines.
                     </p>
                     <div class="slide-grid-3">
-                        <div class="pilot-card">
+                        <div class="pilot-card sentinel-hover-card">
+                            <div class="sentinel-image-overlay">
+                                <img src="images/sentinel-1.png" alt="Sentinel-1 Satellite">
+                                <span class="sentinel-overlay-label">Sentinel-1 Radar Satellite</span>
+                            </div>
                             <div class="pilot-icon sentinel-icon">S-1</div>
                             <h3>Sentinel-1</h3>
                             <p><strong>C-Band Radar (SAR)</strong><br>Sees through clouds, day and night. Key for ship detection, oil spill tracking, and mapping changes in coastlines.</p>
                         </div>
-                        <div class="pilot-card">
+                        <div class="pilot-card sentinel-hover-card">
+                            <div class="sentinel-image-overlay">
+                                <img src="images/sentinel-2.png" alt="Sentinel-2 Satellite">
+                                <span class="sentinel-overlay-label">Sentinel-2 Optical Satellite</span>
+                            </div>
                             <div class="pilot-icon sentinel-icon">S-2</div>
                             <h3>Sentinel-2</h3>
                             <p><strong>Multispectral Optical</strong><br>13 spectral bands. Highly accurate for land classification, vegetation health, and inland/coastal water color.</p>
                         </div>
-                        <div class="pilot-card">
+                        <div class="pilot-card sentinel-hover-card">
+                            <div class="sentinel-image-overlay">
+                                <img src="images/sentinel-3.png" alt="Sentinel-3 Satellite">
+                                <span class="sentinel-overlay-label">Sentinel-3 Ocean &amp; Land Color</span>
+                            </div>
                             <div class="pilot-icon sentinel-icon">S-3</div>
                             <h3>Sentinel-3</h3>
                             <p><strong>Ocean &amp; Land Color</strong><br>Wide-swath sensors. Measures sea surface temperature, algal blooms, and coastal water quality parameters.</p>
@@ -268,7 +398,9 @@
                     </p>
                     <div class="slide-grid-2">
                         <div class="pilot-card" style="text-align: left; padding: 1.5rem;">
-                            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🌍</div>
+                            <div style="height: 36px; margin-bottom: 0.75rem; display: flex; align-items: center;">
+                                <img src="images/planet-logo.svg" alt="Planet Logo" style="height: 28px;">
+                            </div>
                             <h3 style="color: var(--gold-light); font-size: 1.25rem; margin-bottom: 0.5rem;">Planet: Daily Global Coverage</h3>
                             <p style="font-size: 0.85rem; margin-bottom: 1rem; line-height: 1.5;">
                                 Utilizing a fleet of over 200 Dove CubeSats, Planet images the entire landmass of the Earth every single day.
@@ -280,7 +412,9 @@
                             </ul>
                         </div>
                         <div class="pilot-card" style="text-align: left; padding: 1.5rem;">
-                            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🔬</div>
+                            <div style="height: 36px; margin-bottom: 0.75rem; display: flex; align-items: center;">
+                                <img src="images/maxar-logo.svg" alt="Maxar Logo" style="height: 22px;">
+                            </div>
                             <h3 style="color: var(--gold-light); font-size: 1.25rem; margin-bottom: 0.5rem;">Maxar: Ultra-High Resolution</h3>
                             <p style="font-size: 0.85rem; margin-bottom: 1rem; line-height: 1.5;">
                                 Deploying large, high-altitude optical satellites, Maxar captures detailed, task-specific imagery of target regions.
@@ -439,7 +573,8 @@
                                 <div class="flow-sub">25 TB/day from Sentinel-1, 2, 3, drone fleets, and IoT sensors</div>
                             </div>
                             <div class="flow-arrow">&#8595;</div>
-                            <div class="flow-step flow-highlight">
+                            <div class="flow-step flow-highlight" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <img src="images/terra-logo.png" alt="TERRA Logo" style="height: 32px; margin-bottom: 0.4rem;">
                                 <div class="flow-label">TERRA Intelligence Engine</div>
                                 <div class="flow-sub">AI Analytics, Data Fusion, Digital Twins, and RESTful APIs</div>
                             </div>
@@ -462,7 +597,18 @@
                     <h2>Three Pilots Across Europe</h2>
                     <div class="slide-grid-3">
                         <div class="pilot-card pilot-detailed">
-                            <div class="pilot-flag">&#127468;&#127479;</div>
+                            <div class="pilot-flag" style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <svg viewBox="0 0 100 100" width="30" height="30" style="border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.3); display: block;">
+                                    <rect width="100" height="100" fill="#0D5EAF"/>
+                                    <rect y="11.1" width="100" height="11.1" fill="#FFFFFF"/>
+                                    <rect y="33.3" width="100" height="11.1" fill="#FFFFFF"/>
+                                    <rect y="55.6" width="100" height="11.1" fill="#FFFFFF"/>
+                                    <rect y="77.8" width="100" height="11.1" fill="#FFFFFF"/>
+                                    <rect width="55.6" height="55.6" fill="#0D5EAF"/>
+                                    <rect x="22.2" width="11.1" height="55.6" fill="#FFFFFF"/>
+                                    <rect y="22.2" width="55.6" height="11.1" fill="#FFFFFF"/>
+                                </svg>
+                            </div>
                             <h3>Greece: Water Pollution</h3>
                             <p class="pilot-location">Sperchios River &amp; Maliakos Gulf, Fthiotida</p>
                             <p style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 0.5rem;"><strong>The decision:</strong> Close Beach X in 48 hours; pollution plume arriving. Fuses Sentinel-2/3 with USV drone telemetry to compute a Predictive Water Quality Index. Fthiotida pilot affects 550,000 residents.</p>
@@ -470,7 +616,12 @@
                             <div class="pilot-tech">Sentinel-2 + Sentinel-3 &middot; USV IoT Sensors &middot; LSTM AI &middot; UTH Lead</div>
                         </div>
                         <div class="pilot-card pilot-detailed">
-                            <div class="pilot-flag">&#127477;&#127473;</div>
+                            <div class="pilot-flag" style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <svg viewBox="0 0 100 100" width="30" height="30" style="border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); display: block;">
+                                    <rect width="100" height="50" fill="#FFFFFF"/>
+                                    <rect y="50" width="100" height="50" fill="#DC143C"/>
+                                </svg>
+                            </div>
                             <h3>Poland: Maritime Security</h3>
                             <p class="pilot-location">Port of Gdansk, Baltic Sea</p>
                             <p style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 0.5rem;"><strong>The decision:</strong> Vessel at 54.3 degrees North has gone dark; dispatch patrol. Fuses Sentinel-1 radar with AIS tracking logs to flag "dark vessels" that disable transponders, plus tracks 6-8 year port water trends.</p>
@@ -478,7 +629,15 @@
                             <div class="pilot-tech">Sentinel-1 SAR &middot; SAR-AIS Fusion AI &middot; BDS Lead</div>
                         </div>
                         <div class="pilot-card pilot-detailed">
-                            <div class="pilot-flag">&#127468;&#127463;</div>
+                            <div class="pilot-flag" style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <svg viewBox="0 0 100 100" width="30" height="30" style="border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.3); display: block;">
+                                    <rect width="100" height="100" fill="#00247D"/>
+                                    <path d="M0,0 L100,100 M100,0 L0,100" stroke="#FFFFFF" stroke-width="12"/>
+                                    <path d="M0,0 L100,100 M100,0 L0,100" stroke="#CF142B" stroke-width="4"/>
+                                    <path d="M50,0 L50,100 M0,50 L100,50" stroke="#FFFFFF" stroke-width="20"/>
+                                    <path d="M50,0 L50,100 M0,50 L100,50" stroke="#CF142B" stroke-width="12"/>
+                                </svg>
+                            </div>
                             <h3>Scotland: Coastal Erosion</h3>
                             <p class="pilot-location">Scottish Coastline, UK</p>
                             <p style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 0.5rem;"><strong>The decision:</strong> This 200m stretch will retreat 3 metres by 2028; relocate infrastructure. Fuses Sentinel-1/2 optical and radar imagery to run U-Net and Mamba-LSTM models for extracting the vegetation line.</p>
@@ -588,30 +747,201 @@
             <!-- SLIDE 14: YOUR TURN - INTERACTIVE STATIONS -->
             <!-- ══════════════════════════════════════════ -->
             <section class="slide" data-slide="13">
-                <div class="slide-inner slide-center">
+                <div class="slide-inner slide-center" style="max-width: 1100px;">
                     <p class="slide-tag">Hands-On</p>
                     <h2>Your Turn: Interactive Stations</h2>
-                    <p class="slide-body" style="max-width: 620px; margin: 0 auto var(--space-md);">
-                        Split into three groups. Every 12 minutes, rotate to the next station. At each one, you will interact with real satellite data in your browser.
+                    <p class="slide-body" style="max-width: 700px; margin: 0 auto var(--space-md); font-size: 0.95rem;">
+                        Split into three groups. Every 12 minutes, rotate to the next station. Click the tabs below to preview or demo each live station directly in the browser!
                     </p>
-                    <div class="station-grid">
-                        <div class="station">
-                            <div class="station-num">1</div>
-                            <h4>Station Greece</h4>
-                            <p>Explore coastal water quality using Copernicus Browser. Can you spot the pollution plume where the Sperchios River meets the Maliakos Gulf?</p>
-                        </div>
-                        <div class="station">
-                            <div class="station-num">2</div>
-                            <h4>Station Poland</h4>
-                            <p>Examine SAR radar imagery of the Port of Gdansk. Can you find the "dark vessel" hiding from tracking? Compare NDVI over 5 years.</p>
-                        </div>
-                        <div class="station">
-                            <div class="station-num">3</div>
-                            <h4>Station Scotland</h4>
-                            <p>Compare coastline vegetation edges over time using fixed transect measurements. Where is the erosion happening and how fast?</p>
-                        </div>
+                    
+                    <!-- Tab Navigation -->
+                    <div class="station-tabs" style="display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+                        <button class="station-tab-btn active" onclick="switchStation(0)">Station 1: Grèce 🇬🇷</button>
+                        <button class="station-tab-btn" onclick="switchStation(1)">Station 2: Pologne 🇵🇱</button>
+                        <button class="station-tab-btn" onclick="switchStation(2)">Station 3: Écosse 🇬🇧</button>
                     </div>
-                    <p class="slide-note">Each station has a printed Policy Brief with background and guided questions.</p>
+
+                    <!-- Station Sandbox Views -->
+                    <div class="station-sandbox-container" style="background: rgba(20, 20, 25, 0.7); border: 1px solid var(--dark-border); border-radius: var(--radius); padding: 1.5rem; text-align: left; min-height: 480px; display: flex; flex-direction: column; position: relative; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
+                        
+                        <!-- Station 1: Greece (Water Quality Slider) -->
+                        <div class="station-sandbox-view active" id="station-view-0">
+                            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem; align-items: center;">
+                                <div>
+                                    <h4 style="color: var(--gold-light); margin-bottom: 0.5rem; font-size: 1.25rem;">Station Greece &middot; Sperchios River Delta</h4>
+                                    <p class="slide-body" style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem;">
+                                        <strong>Goal:</strong> Detect agricultural runoff and sediment pollution. Spot the pollution plume where the Sperchios River empties into the Maliakos Gulf.
+                                    </p>
+                                    <div class="pilot-card" style="padding: 0.75rem; margin-bottom: 1rem; border-left: 2px solid var(--gold);">
+                                        <span style="font-size: 0.75rem; color: var(--text-dim); display: block; text-transform: uppercase; letter-spacing: 0.05em;">Interactive Demo</span>
+                                        <p style="font-size: 0.85rem; margin: 0; line-height: 1.4;">
+                                            Drag the slider on the map to compare the <strong>True Color S-2</strong> image with the <strong>Water Quality Index (WQI)</strong> showing the nitrate pollution plume in orange.
+                                        </p>
+                                    </div>
+                                    <div class="pilot-tech" style="margin-top: 0; font-size: 0.75rem;">
+                                        Sentinel-2 + Sentinel-3 &middot; Fuses WQI &middot; UTH Lead
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <!-- Interactive Comparison Slider -->
+                                    <div class="image-compare-container" style="position: relative; width: 380px; height: 260px; overflow: hidden; border-radius: 12px; border: 2px solid var(--dark-border); user-select: none;">
+                                        <!-- Under image: WQI Plume -->
+                                        <div class="compare-bg" style="position: absolute; inset: 0; background: #0c0c0e;">
+                                            <!-- SVG Drawing of Maliakos Gulf with Plume -->
+                                            <svg viewBox="0 0 380 260" width="100%" height="100%">
+                                                <!-- Water -->
+                                                <rect width="380" height="260" fill="#0c1d2e"/>
+                                                <!-- Land (Sperchios Delta) -->
+                                                <path d="M0,0 Q60,30 80,60 T140,80 T160,130 T130,170 T60,200 L0,260 Z" fill="#2d2d1e" stroke="#40402e" stroke-width="2"/>
+                                                <!-- Sperchios River channel -->
+                                                <path d="M0,120 Q50,110 80,125 T152,128" fill="none" stroke="#2567a5" stroke-width="12"/>
+                                                <path d="M0,120 Q50,110 80,125 T152,128" fill="none" stroke="#68baf5" stroke-width="4"/>
+                                                <!-- WQI Plume (Orange glow radiating from river mouth) -->
+                                                <path d="M148,128 Q220,90 280,110 T350,140 T260,180 T150,136 Z" fill="url(#plumeGrad)" opacity="0.85" filter="blur(8px)"/>
+                                                <!-- Warning label -->
+                                                <text x="250" y="85" fill="#fcae1e" font-size="10" font-family="sans-serif" font-weight="bold" text-anchor="middle">HIGH TURBIDITY PLUME</text>
+                                                <!-- Definitions -->
+                                                <defs>
+                                                    <radialGradient id="plumeGrad" cx="40%" cy="50%" r="60%">
+                                                        <stop offset="0%" stop-color="#ff4500" stop-opacity="1"/>
+                                                        <stop offset="35%" stop-color="#ff7f50" stop-opacity="0.8"/>
+                                                        <stop offset="70%" stop-color="#ffd700" stop-opacity="0.4"/>
+                                                        <stop offset="100%" stop-color="#0c1d2e" stop-opacity="0"/>
+                                                    </radialGradient>
+                                                </defs>
+                                            </svg>
+                                        </div>
+                                        <!-- Overlay image: True Color S-2 (gets clipped by slider) -->
+                                        <div class="compare-overlay" id="compare-overlay-img" style="position: absolute; top: 0; left: 0; height: 100%; width: 50%; overflow: hidden; border-right: 2px solid var(--gold); z-index: 2;">
+                                            <svg viewBox="0 0 380 260" width="380px" height="260px" style="max-width: none;">
+                                                <!-- Water (darker, green-blue) -->
+                                                <rect width="380" height="260" fill="#082b3a"/>
+                                                <!-- Land (Sperchios Delta) -->
+                                                <path d="M0,0 Q60,30 80,60 T140,80 T160,130 T130,170 T60,200 L0,260 Z" fill="#2d2d1e" stroke="#40402e" stroke-width="2"/>
+                                                <!-- Sperchios River channel -->
+                                                <path d="M0,120 Q50,110 80,125 T152,128" fill="none" stroke="#2567a5" stroke-width="12"/>
+                                                <!-- Natural sediment (subtle brown/green outflow) -->
+                                                <path d="M148,128 Q200,105 240,120 T180,160 Z" fill="#5c5438" opacity="0.6" filter="blur(4px)"/>
+                                            </svg>
+                                        </div>
+                                        <!-- Slide Label Tags -->
+                                        <span style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: #fff; padding: 2px 6px; font-size: 0.7rem; border-radius: 4px; z-index: 3; pointer-events: none;">S-2 True Color</span>
+                                        <span style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: var(--gold); padding: 2px 6px; font-size: 0.7rem; border-radius: 4px; z-index: 3; pointer-events: none;">WQI Plume Analysis</span>
+                                        <!-- Slider input overlay -->
+                                        <input type="range" min="0" max="100" value="50" class="compare-slider" id="compare-slider-input" oninput="handleCompareSlider(this.value)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; padding: 0; opacity: 0; cursor: ew-resize; z-index: 4;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Station 2: Poland (Vessel Spotter Grid) -->
+                        <div class="station-sandbox-view" id="station-view-1" style="display: none;">
+                            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem; align-items: center;">
+                                <div>
+                                    <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem; font-size: 1.25rem;">Station Poland &middot; Gdansk Harbor Sentinel-1 SAR</h4>
+                                    <p class="slide-body" style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem;">
+                                        <strong>Goal:</strong> Spot illegal vessel activities. Fuses Sentinel-1 synthetic aperture radar (SAR) with AIS transponder logs to identify "dark vessels."
+                                    </p>
+                                    <div class="pilot-card" style="padding: 0.75rem; margin-bottom: 1rem; border-left: 2px solid var(--accent-blue);">
+                                        <span style="font-size: 0.75rem; color: var(--text-dim); display: block; text-transform: uppercase; letter-spacing: 0.05em;">Interactive Demo</span>
+                                        <p style="font-size: 0.85rem; margin: 0; line-height: 1.4;">
+                                            Click on the glowing SAR radar returns (dots) in Gdansk Bay to query their transponder status. Find the one that disabled its transponder!
+                                        </p>
+                                    </div>
+                                    <!-- Warning notification banner inside sandbox -->
+                                    <div id="vessel-warning-banner" style="background: rgba(220, 53, 69, 0.15); border: 1px solid rgba(220, 53, 69, 0.4); border-radius: 6px; padding: 0.5rem; font-size: 0.8rem; display: none; align-items: center; gap: 0.5rem; color: #ff5f6d;">
+                                        <span style="font-size: 1rem;">⚠️</span>
+                                        <span><strong>ALERT:</strong> Dark Vessel Detected (AIS Status: OFF). Coordinating dispatch with Polish Maritime Patrol.</span>
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <!-- Radar Screen -->
+                                    <div class="radar-screen" style="position: relative; width: 380px; height: 260px; background: radial-gradient(circle, #081a10 0%, #020603 100%); border-radius: 12px; border: 2px solid #14331e; overflow: hidden;">
+                                        <!-- Grid lines -->
+                                        <div style="position: absolute; inset: 0; background-image: radial-gradient(#14331e 1px, transparent 1px), linear-gradient(to right, rgba(20,51,30,0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(20,51,30,0.15) 1px, transparent 1px); background-size: 20px 20px, 40px 40px, 40px 40px;"></div>
+                                        <!-- Radar Sweep -->
+                                        <div class="radar-sweep" style="position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; background: conic-gradient(from 0deg, rgba(20,80,40,0.4) 0deg, rgba(20,80,40,0) 90deg); border-radius: 50%; animation: radar-spin 6s linear infinite; transform-origin: center; pointer-events: none;"></div>
+                                        <!-- Harbors outline -->
+                                        <svg viewBox="0 0 380 260" width="100%" height="100%" style="position: absolute; top:0; left:0; pointer-events: none; opacity: 0.25;">
+                                            <path d="M0,40 L120,40 L140,80 L90,120 L110,160 L60,180 L70,220 L0,240" fill="none" stroke="#1bfa5c" stroke-width="2"/>
+                                        </svg>
+                                        
+                                        <!-- Radar Blips -->
+                                        <button class="radar-blip" onclick="checkVessel(1, this)" style="position: absolute; top: 75px; left: 160px; width: 12px; height: 12px; border-radius: 50%; background: #1bfa5c; border: none; box-shadow: 0 0 10px #1bfa5c; cursor: pointer; transform: translate(-50%,-50%); padding: 0; outline: none; transition: transform 0.2s;"></button>
+                                        <button class="radar-blip" onclick="checkVessel(2, this)" style="position: absolute; top: 180px; left: 240px; width: 12px; height: 12px; border-radius: 50%; background: #1bfa5c; border: none; box-shadow: 0 0 10px #1bfa5c; cursor: pointer; transform: translate(-50%,-50%); padding: 0; outline: none; transition: transform 0.2s;"></button>
+                                        <button class="radar-blip dark-blip" onclick="checkVessel(3, this)" style="position: absolute; top: 110px; left: 290px; width: 12px; height: 12px; border-radius: 50%; background: #1bfa5c; border: none; box-shadow: 0 0 10px #1bfa5c; cursor: pointer; transform: translate(-50%,-50%); padding: 0; outline: none; transition: transform 0.2s;"></button>
+                                        
+                                        <!-- Blip Info Panel Overlay -->
+                                        <div id="vessel-info-panel" style="position: absolute; bottom: 10px; left: 10px; right: 10px; background: rgba(5,15,8,0.85); border: 1px solid #14331e; border-radius: 6px; padding: 0.5rem; font-family: monospace; font-size: 0.75rem; color: #1bfa5c; z-index: 10;">
+                                            SYSTEM IDLE: Click radar return dots to scan...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Station 3: Scotland (Shoreline Time-Traveler) -->
+                        <div class="station-sandbox-view" id="station-view-2" style="display: none;">
+                            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem; align-items: center;">
+                                <div>
+                                    <h4 style="color: #ff5f6d; margin-bottom: 0.5rem; font-size: 1.25rem;">Station Scotland &middot; Coastline Erosion Timeline</h4>
+                                    <p class="slide-body" style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem;">
+                                        <strong>Goal:</strong> Measure erosion and predict infrastructure threats. Uses Sentinel-1/2 fusion to map the high-tide vegetation edge.
+                                    </p>
+                                    <div class="pilot-card" style="padding: 0.75rem; margin-bottom: 1rem; border-left: 2px solid #ff5f6d;">
+                                        <span style="font-size: 0.75rem; color: var(--text-dim); display: block; text-transform: uppercase; letter-spacing: 0.05em;">Interactive Demo</span>
+                                        <p style="font-size: 0.85rem; margin: 0; line-height: 1.4;">
+                                            Click the years on the timeline below to watch the coastline retreat over time. Notice the distance to the inland road shrinking!
+                                        </p>
+                                    </div>
+                                    <!-- Year buttons -->
+                                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                                        <button class="year-btn active" onclick="setErosionYear(0, this)">2018</button>
+                                        <button class="year-btn" onclick="setErosionYear(1, this)">2020</button>
+                                        <button class="year-btn" onclick="setErosionYear(2, this)">2022</button>
+                                        <button class="year-btn" onclick="setErosionYear(3, this)">2024</button>
+                                        <button class="year-btn" onclick="setErosionYear(4, this)">2026</button>
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <!-- Shoreline Map Container -->
+                                    <div class="shoreline-map" style="position: relative; width: 380px; height: 260px; background: #0b1f2e; border-radius: 12px; border: 2px solid var(--dark-border); overflow: hidden;">
+                                        <!-- Sandy beach -->
+                                        <div style="position: absolute; top: 0; left: 0; width: 140px; height: 100%; background: #c2b280;"></div>
+                                        <!-- Land/Grass (which erodes) -->
+                                        <div id="grass-land" style="position: absolute; top: 0; left: 0; width: 100px; height: 100%; background: #3b5f36; transition: width 0.8s ease; border-right: 3px solid #6b8e23;"></div>
+                                        
+                                        <!-- Road (Critical Infrastructure) -->
+                                        <div style="position: absolute; top: 0; left: 20px; width: 15px; height: 100%; background: #444; border-left: 2px dashed #ffeb3b; border-right: 2px dashed #ffeb3b;"></div>
+                                        
+                                        <!-- Labels -->
+                                        <span style="position: absolute; top: 10px; left: 45px; color: #fff; font-size: 0.7rem; font-weight: bold; background: rgba(0,0,0,0.6); padding: 1px 4px; border-radius: 3px;">Inland Road</span>
+                                        <span style="position: absolute; top: 10px; right: 20px; color: #87ceeb; font-size: 0.7rem; font-weight: bold; background: rgba(0,0,0,0.6); padding: 1px 4px; border-radius: 3px;">North Sea</span>
+                                        
+                                        <!-- Shoreline Indicator overlay -->
+                                        <svg viewBox="0 0 380 260" width="100%" height="100%" style="position: absolute; top: 0; left: 0; pointer-events: none;">
+                                            <!-- Measurement line (dotted ruler) -->
+                                            <line x1="27" y1="130" x2="100" id="ruler-line" stroke="#ff5f6d" stroke-width="2" stroke-dasharray="4,4" style="transition: x2 0.8s ease;"/>
+                                            <circle cx="27" cy="130" r="4" fill="#ff5f6d"/>
+                                            <circle cx="100" cy="130" id="ruler-end" r="4" fill="#ff5f6d" style="transition: cx 0.8s ease;"/>
+                                            <text x="65" y="120" id="ruler-text" fill="#ff5f6d" font-size="10" font-family="monospace" font-weight="bold" text-anchor="middle">Dist: 73m</text>
+                                            
+                                            <!-- Shoreline edge path -->
+                                            <path id="shoreline-edge" d="M100,0 C105,60 95,120 100,180 C105,220 95,240 100,260" fill="none" stroke="#ffff00" stroke-width="2" style="transition: d 0.8s ease; opacity: 0.7;"/>
+                                        </svg>
+                                        
+                                        <!-- Bottom info block -->
+                                        <div id="erosion-info-panel" style="position: absolute; bottom: 10px; left: 10px; right: 10px; background: rgba(0,0,0,0.8); border: 1px solid var(--dark-border); border-radius: 6px; padding: 0.5rem; font-size: 0.75rem; text-align: center; color: #fff;">
+                                            Select a year to observe coastal erosion rates...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <p class="slide-note">Clicking interactive buttons runs real-time HTML/JS sandbox animations modeling actual pilot logic.</p>
                 </div>
             </section>
 
@@ -669,5 +999,106 @@
     </main>
 
     <script src="slides.js?v=2"></script>
+    <script>
+        // Tab switching logic for Slide 14
+        function switchStation(index) {
+            const buttons = document.querySelectorAll('.station-tab-btn');
+            buttons.forEach((btn, idx) => {
+                btn.classList.toggle('active', idx === index);
+            });
+
+            const views = document.querySelectorAll('.station-sandbox-view');
+            views.forEach((view, idx) => {
+                view.style.display = (idx === index) ? 'block' : 'none';
+            });
+        }
+
+        // Comparison slider logic (Greece Station)
+        function handleCompareSlider(value) {
+            const overlay = document.getElementById('compare-overlay-img');
+            if (overlay) {
+                overlay.style.width = value + '%';
+            }
+        }
+
+        // Radar Spotter logic (Poland Station)
+        const vesselData = {
+            1: { name: "Cargo Vessel S-98", ais: "ACTIVE", cargo: "Grain Logistics", class: "Reporting Normal", statusText: "MATCHED: vessel is reporting normally.", color: "#1bfa5c" },
+            2: { name: "Baltic Trawler 03", ais: "ACTIVE", cargo: "Commercial Fishing", class: "Reporting Normal", statusText: "MATCHED: vessel is reporting normally.", color: "#1bfa5c" },
+            3: { name: "UNIDENTIFIED CLASS", ais: "OFF ⚠️", cargo: "Unknown / Dark", class: "Suspicious Dark Vessel", statusText: "SUSPICIOUS DARK VESSEL: AIS disabled. Flagged for Polish Patrol.", color: "#ff3546" }
+        };
+
+        function checkVessel(id, element) {
+            const data = vesselData[id];
+            const panel = document.getElementById('vessel-info-panel');
+            const banner = document.getElementById('vessel-warning-banner');
+
+            if (!panel) return;
+
+            const blips = document.querySelectorAll('.radar-blip');
+            blips.forEach(b => b.style.transform = 'translate(-50%,-50%) scale(1)');
+            element.style.transform = 'translate(-50%,-50%) scale(1.3)';
+
+            panel.innerHTML = `<strong>SCANNING TARGET ID: SAR-2026-${id}</strong><br>` +
+                `Type: ${data.name}<br>` +
+                `AIS Transponder: <span style="color:${data.color}">${data.ais}</span><br>` +
+                `Mission/Class: ${data.cargo} (${data.class})<br>` +
+                `<span style="color:${data.color}">Status: ${data.statusText}</span>`;
+
+            if (id === 3) {
+                banner.style.display = 'flex';
+                element.style.background = '#ff3546';
+                element.style.boxShadow = '0 0 15px #ff3546';
+            } else {
+                banner.style.display = 'none';
+                element.style.background = '#1bfa5c';
+                element.style.boxShadow = '0 0 10px #1bfa5c';
+            }
+        }
+
+        // Coastal Erosion logic (Scotland Station)
+        const erosionData = [
+            { width: 100, rulerEnd: 100, text: "2018 Baseline. Distance to Road: 73m.", path: "M100,0 C105,60 95,120 100,180 C105,220 95,240 100,260", dist: "73m" },
+            { width: 88, rulerEnd: 88, text: "2020 Observations. Shoreline retreated 12m. Distance: 61m.", path: "M88,0 C93,60 83,120 88,180 C93,220 83,240 88,260", dist: "61m" },
+            { width: 76, rulerEnd: 76, text: "2022 Observations. Shoreline retreated 24m. Distance: 49m.", path: "M76,0 C81,60 71,120 76,180 C81,220 71,240 76,260", dist: "49m" },
+            { width: 64, rulerEnd: 64, text: "2024 Climate Surge. Shoreline retreated 36m. Distance: 37m.", path: "M64,0 C69,60 59,120 64,180 C69,220 59,240 64,260", dist: "37m" },
+            { width: 52, rulerEnd: 52, text: "⚠️ 2026 Critical Alert: Shoreline retreated 48m. Road threatened! Distance: 25m.", path: "M52,0 C57,60 47,120 52,180 C57,220 47,240 52,260", dist: "25m" }
+        ];
+
+        function setErosionYear(index, btn) {
+            const yearBtns = document.querySelectorAll('.year-btn');
+            yearBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const data = erosionData[index];
+            const grass = document.getElementById('grass-land');
+            const rulerEnd = document.getElementById('ruler-end');
+            const rulerLine = document.getElementById('ruler-line');
+            const rulerText = document.getElementById('ruler-text');
+            const edgePath = document.getElementById('shoreline-edge');
+            const panel = document.getElementById('erosion-info-panel');
+
+            if (grass) grass.style.width = data.width + 'px';
+            if (rulerEnd) rulerEnd.setAttribute('cx', data.rulerEnd);
+            if (rulerLine) rulerLine.setAttribute('x2', data.rulerEnd);
+            if (rulerText) {
+                rulerText.setAttribute('x', (27 + data.rulerEnd) / 2);
+                rulerText.textContent = `Dist: ${data.dist}`;
+                rulerText.style.fill = (index === 4) ? '#ff3546' : '#ff5f6d';
+            }
+            if (edgePath) edgePath.setAttribute('d', data.path);
+            if (panel) {
+                panel.innerHTML = data.text;
+                panel.style.color = (index === 4) ? '#ff5f6d' : '#fff';
+                panel.style.fontWeight = (index === 4) ? 'bold' : 'normal';
+            }
+        }
+
+        // Initialize erosion year text
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstYearBtn = document.querySelector('.year-btn');
+            if (firstYearBtn) setErosionYear(0, firstYearBtn);
+        });
+    </script>
 </body>
 </html>
