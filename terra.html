@@ -12,8 +12,32 @@
     <link rel="stylesheet" href="presentation.css">
     <style>
         .slide-bg-iss {
+            position: relative;
             background: linear-gradient(rgba(12, 12, 14, 0.82), rgba(12, 12, 14, 0.88)), url('images/earth-iss.png') no-repeat center center;
             background-size: cover;
+            overflow: hidden;
+        }
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .video-background iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 56.25vw; /* 16:9 Aspect Ratio */
+            min-height: 100vh;
+            min-width: 177.77vh; /* 16:9 Aspect Ratio */
+            transform: translate(-50%, -50%);
+            opacity: 0.35; /* Subtle background visibility */
+            mix-blend-mode: screen;
         }
         .slide-image {
             width: 100%;
@@ -84,7 +108,10 @@
             <!-- SLIDE 1: TITLE                            -->
             <!-- ══════════════════════════════════════════ -->
             <section class="slide active slide-bg-iss" data-slide="0">
-                <div class="slide-inner slide-center">
+                <div class="video-background">
+                    <iframe src="https://www.youtube.com/embed/9zK2b7677uA?autoplay=1&mute=1&loop=1&playlist=9zK2b7677uA&controls=0&showinfo=0&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+                </div>
+                <div class="slide-inner slide-center" style="position: relative; z-index: 2;">
                     <div class="slide-logos">
                         <img src="images/terra-logo.png" alt="TERRA" class="slide-logo">
                         <img src="images/eu-funded.png" alt="EU Funded" class="slide-logo">
@@ -293,9 +320,52 @@
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 7: THE VALUE GAP                    -->
+            <!-- SLIDE 7: DATA PROCESSING LEVELS            -->
             <!-- ══════════════════════════════════════════ -->
             <section class="slide" data-slide="6">
+                <div class="slide-inner">
+                    <p class="slide-tag">From Pixels to Action</p>
+                    <h2>Data Processing Levels</h2>
+                    <p class="slide-body" style="margin-bottom: var(--space-md);">
+                        Earth Observation data is structured into processing levels, transforming raw instrument measurements into calibrated, atmospherically-corrected observations, and finally into environmental models.
+                    </p>
+                    <div class="slide-grid-2">
+                        <div>
+                            <div class="pilot-card" style="text-align: left; padding: 1rem; margin-bottom: 0.75rem; border-left: 3px solid var(--gold);">
+                                <h4 style="color: var(--gold-light); margin-bottom: 0.25rem;">Level 0 &amp; Level 1: Raw &amp; Top of Atmosphere</h4>
+                                <p style="font-size: 0.8rem; line-height: 1.5; color: var(--text-muted);">
+                                    Level 0 is raw sensor voltage and raw telemetry. Level 1 is geolocated and calibrated (Top of Atmosphere reflectance) but still contains atmospheric distortion and cloud cover.
+                                </p>
+                            </div>
+                            <div class="pilot-card" style="text-align: left; padding: 1rem; border-left: 3px solid var(--accent-blue);">
+                                <h4 style="color: var(--accent-blue); margin-bottom: 0.25rem;">Level 2: Surface Reflectance</h4>
+                                <p style="font-size: 0.8rem; line-height: 1.5; color: var(--text-muted);">
+                                    Atmospherically corrected to represent what a sensor would see on the ground. This is the clean imagery used by researchers for land classification and vegetation analysis.
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="pilot-card" style="text-align: left; padding: 1rem; margin-bottom: 0.75rem; border-left: 3px solid var(--gold-light);">
+                                <h4 style="color: var(--gold-light); margin-bottom: 0.25rem;">Level 3: Geophysical Variables</h4>
+                                <p style="font-size: 0.8rem; line-height: 1.5; color: var(--text-muted);">
+                                    Processed indices and variables derived from Level 2, such as NDVI (vegetation index), Soil Moisture, or Chlorophyll-A concentrations in water.
+                                </p>
+                            </div>
+                            <div class="pilot-card" style="text-align: left; padding: 1rem; border-left: 3px solid var(--gold-bright);">
+                                <h4 style="color: var(--gold-bright); margin-bottom: 0.25rem;">Level 4: Decision Intelligence (The Last Mile)</h4>
+                                <p style="font-size: 0.8rem; line-height: 1.5; color: var(--text-muted);">
+                                    The ultimate tier. Fusing Level 3 indicators with historical models and AI to output actionable decisions, e.g., "Close this beach due to an active pollution plume."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ══════════════════════════════════════════ -->
+            <!-- SLIDE 8: THE VALUE GAP                    -->
+            <!-- ══════════════════════════════════════════ -->
+            <section class="slide" data-slide="7">
                 <div class="slide-inner slide-center">
                     <p class="slide-tag">The Value Gap</p>
                     <h2>25 Terabytes per Day. Zero Decisions.</h2>
@@ -328,9 +398,9 @@
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 8: THE INTELLIGENCE LAYER           -->
+            <!-- SLIDE 9: THE INTELLIGENCE LAYER           -->
             <!-- ══════════════════════════════════════════ -->
-            <section class="slide" data-slide="7">
+            <section class="slide" data-slide="8">
                 <div class="slide-inner">
                     <p class="slide-tag">The Solutions Layer</p>
                     <h2>Decisions, Not Pixels</h2>
@@ -373,9 +443,9 @@
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 9: THREE PILOTS                     -->
+            <!-- SLIDE 10: THREE PILOTS                     -->
             <!-- ══════════════════════════════════════════ -->
-            <section class="slide" data-slide="8">
+            <section class="slide" data-slide="9">
                 <div class="slide-inner">
                     <p class="slide-tag">Real Stories</p>
                     <h2>Three Pilots Across Europe</h2>
@@ -406,9 +476,9 @@
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 10: KEY RESULTS                      -->
+            <!-- SLIDE 11: KEY RESULTS                      -->
             <!-- ══════════════════════════════════════════ -->
-            <section class="slide" data-slide="9">
+            <section class="slide" data-slide="10">
                 <div class="slide-inner slide-center">
                     <p class="slide-tag">Impact</p>
                     <h2>From Reactive to Proactive</h2>
@@ -433,9 +503,9 @@
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 11: STUDENT SHOWCASE                -->
+            <!-- SLIDE 12: STUDENT SHOWCASE                -->
             <!-- ══════════════════════════════════════════ -->
-            <section class="slide" data-slide="10">
+            <section class="slide" data-slide="11">
                 <div class="slide-inner">
                     <p class="slide-tag">Advanced Studies Showcase</p>
                     <h2>The Intelligence Layer in Action</h2>
@@ -472,9 +542,9 @@
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 12: GPS ANALOGY                     -->
+            <!-- SLIDE 13: GPS ANALOGY                     -->
             <!-- ══════════════════════════════════════════ -->
-            <section class="slide" data-slide="11">
+            <section class="slide" data-slide="12">
                 <div class="slide-inner">
                     <p class="slide-tag">The Democratization of Space</p>
                     <h2>The GPS Analogy</h2>
@@ -501,9 +571,9 @@
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 13: YOUR TURN - INTERACTIVE STATIONS -->
+            <!-- SLIDE 14: YOUR TURN - INTERACTIVE STATIONS -->
             <!-- ══════════════════════════════════════════ -->
-            <section class="slide" data-slide="12">
+            <section class="slide" data-slide="13">
                 <div class="slide-inner slide-center">
                     <p class="slide-tag">Hands-On</p>
                     <h2>Your Turn: Interactive Stations</h2>
@@ -532,9 +602,9 @@
             </section>
 
             <!-- ══════════════════════════════════════════ -->
-            <!-- SLIDE 14: CLOSING                         -->
+            <!-- SLIDE 15: CLOSING                         -->
             <!-- ══════════════════════════════════════════ -->
-            <section class="slide" data-slide="13">
+            <section class="slide" data-slide="14">
                 <div class="slide-inner slide-center">
                     <div class="slide-logos">
                         <img src="images/terra-logo.png" alt="TERRA" class="slide-logo">
@@ -578,7 +648,7 @@
             <div class="slide-progress">
                 <span class="slide-current">1</span>
                 <span class="slide-sep">/</span>
-                <span class="slide-total">14</span>
+                <span class="slide-total">15</span>
             </div>
             <button class="slide-btn" id="next-btn" aria-label="Next slide">&rarr;</button>
         </div>
